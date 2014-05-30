@@ -26,3 +26,14 @@ Add as extension. Code:
   ],
   
 ```
+
+Also Add view configuration for theme
+
+```
+'view' => [
+            'theme' => [
+                'pathMap' => ['@app/views' => '@app/themes/adminui'], 
+                'baseUrl' => '@web/themes/adminui',
+            ],
+        ]
+```
