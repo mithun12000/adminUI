@@ -17,6 +17,7 @@ Add as extension. Code:
   [
     'name' => 'adminUi',
     'version' => '1.0',
+	'bootstrap' => 'yii\adminUi\AdminUiBootstrap',
     'alias' => 
     [
       '@yii/adminUi' => [EXTENSION_PATH] '/adminUi',
@@ -25,15 +26,4 @@ Add as extension. Code:
     ],
   ],
   
-```
-
-Also Add view configuration for theme
-
-```
-'view' => [
-            'theme' => [
-                'pathMap' => ['@app/views' => '@app/themes/adminui'], 
-                'baseUrl' => '@web/themes/adminui',
-            ],
-        ]
 ```
