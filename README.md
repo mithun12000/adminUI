@@ -9,16 +9,31 @@ Its Under Development.
 
 Installation
 =======
-Add as extension. code
+Add as extension. Code:
+
+```php
 
 'adminUi' => 
-  array (
+  [
     'name' => 'adminUi',
     'version' => '1.0',
     'alias' => 
-    array (
+    [
       '@yii/adminUi' => [EXTENSION_PATH] '/adminUi',
       '@vendor/adminUi/assets/' => [EXTENSION_PATH] '/adminUi/assets',
       '@app/themes/adminui' => [EXTENSION_PATH] '/adminUi/themes/',
-    ),
-  ),
+    ],
+  ],
+  
+```
+
+Also Add view configuration for theme
+
+```
+'view' => [
+            'theme' => [
+                'pathMap' => ['@app/views' => '@app/themes/adminui'], 
+                'baseUrl' => '@web/themes/adminui',
+            ],
+        ]
+```
