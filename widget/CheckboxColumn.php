@@ -83,7 +83,7 @@ class CheckboxColumn extends Column
             'multiple' => $this->multiple,
             'checkAll' => $name,
         ]);
-
+        $this->grid->getView()->registerJs("jQuery('#$id').yiiGridView('setSelectionColumn', $options);");
         if ($this->header !== null || !$this->multiple) {
             return parent::renderHeaderCellContent();
         } else {

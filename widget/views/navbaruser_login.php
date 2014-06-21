@@ -3,17 +3,18 @@ use yii\helpers\Url;
 use yii\adminUi\assetsBundle\AdminUiAsset;
 
 $bundle = AdminUiAsset::register($this);
+if($type=='topbar'){
 ?>
 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 	<i class="glyphicon glyphicon-user"></i>
-	<span><?php echo Yii::$app->user->identity->username;?> <i class="caret"></i></span>
+	<span><?php echo Yii::$app->user->identity->fullname;?> <i class="caret"></i></span>
 </a>
 <ul class="dropdown-menu">
 	<!-- User image -->
 	<li class="user-header bg-light-blue">
 		<img src="<?php echo $bundle->baseUrl?>/img/avatar3.png" class="img-circle" alt="User Image" />
 		<p>
-			<?php echo Yii::$app->user->identity->username;?> - Web Developer
+			<?php echo Yii::$app->user->identity->fullname;?> - Web Developer
 			<small>Member since Nov. 2012</small>
 		</p>
 	</li>
@@ -40,3 +41,15 @@ $bundle = AdminUiAsset::register($this);
 		</div>
 	</li>
 </ul>
+<?php }else{?>
+<div class="user-panel">
+    <div class="pull-left image">
+        <img src="<?php echo $bundle->baseUrl?>/img/avatar3.png" class="img-circle" alt="User Image" />
+    </div>
+    <div class="pull-left info">
+        <p>Hello, <?php echo Yii::$app->user->identity->fullname;?></p>
+
+        <i class="fa fa-circle text-success"></i> Online
+    </div>
+</div>
+<?php } ?>

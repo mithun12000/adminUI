@@ -40,6 +40,7 @@ use yii\helpers\Html;
  */
 class NavBarUser extends Widget
 {
+    public $type = 'topbar';
     /**
      * Renders the widget.
      */
@@ -47,7 +48,7 @@ class NavBarUser extends Widget
         if (Yii::$app->user->isGuest) {
             echo $this->render('navbaruser_logout');
         }else{
-            echo $this->render('navbaruser_login');
+            echo $this->render('navbaruser_login',array('type'=>$this->type));
         }        
         AdminUiAsset::register($this->getView());        
     }

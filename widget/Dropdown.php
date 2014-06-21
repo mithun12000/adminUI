@@ -48,7 +48,7 @@ class Dropdown extends Widget
     public function init()
     {
         parent::init();
-        Html::addCssClass($this->options, 'dropdown-menu');
+        Html::addCssClass($this->options, 'treeview-menu');
     }
 
     /**
@@ -85,7 +85,13 @@ class Dropdown extends Widget
             $options = ArrayHelper::getValue($item, 'options', []);
             $linkOptions = ArrayHelper::getValue($item, 'linkOptions', []);
             $linkOptions['tabindex'] = '-1';
-            $content = Html::a($label, ArrayHelper::getValue($item, 'url', '#'), $linkOptions);
+            
+            $label = Html::tag('i', '', $linkOptions).Html::tag('span', $label);
+            if($badgeOptions){            
+                $label .= Html::tag('small', $badgeOptions['text'], ['class'=> $this->getBadgeClass($badgeOptions['type'])]);
+            }
+        
+            $content = Html::a($label, ArrayHelper::getValue($item, 'url', '#'));
             if (!empty($item['items'])) {
                 $content .= $this->renderItems($item['items']);
                 Html::addCssClass($options, 'dropdown-submenu');

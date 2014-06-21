@@ -9,6 +9,7 @@ namespace yii\adminUi\widget;
 
 use Yii;
 use yii\helpers\Json;
+use yii\adminUi\assetsBundle\AdminUiAsset as AdminUiAsset;
 
 /**
  * \yii\bootstrap\Widget is the base class for all bootstrap widgets.
@@ -60,7 +61,7 @@ class Widget extends \yii\base\Widget
     {
         $view = $this->getView();
 
-        BootstrapPluginAsset::register($view);
+        AdminUiAsset::register($view);
 
         $id = $this->options['id'];
 

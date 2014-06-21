@@ -27,7 +27,7 @@ class AdminUiAsset extends AssetBundle
     ];
     
     public $js  = [
-            'js/jquery.min.js',
+            //'js/jquery.min.js',
             'js/bootstrap.min.js',
             'js/jquery-ui-1.10.3.min.js',
             'js/AdminLTE/app.js'

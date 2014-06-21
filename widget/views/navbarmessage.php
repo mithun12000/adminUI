@@ -1,3 +1,9 @@
+<?php
+use yii\helpers\Url;
+use yii\adminUi\assetsBundle\AdminUiAsset;
+
+$bundle = AdminUiAsset::register($this);
+?>
 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 	<i class="fa fa-envelope"></i>
 	<span class="label label-success">4</span>
@@ -10,7 +16,7 @@
 			<li><!-- start message -->
 				<a href="#">
 					<div class="pull-left">
-						<img src="img/avatar3.png" class="img-circle" alt="User Image"/>
+						<img src="<?php echo $bundle->baseUrl?>/img/avatar3.png" class="img-circle" alt="User Image"/>
 					</div>
 					<h4>
 						Support Team
@@ -22,7 +28,7 @@
 			<li>
 				<a href="#">
 					<div class="pull-left">
-						<img src="img/avatar2.png" class="img-circle" alt="user image"/>
+						<img src="<?php echo $bundle->baseUrl?>/img/avatar2.png" class="img-circle" alt="user image"/>
 					</div>
 					<h4>
 						AdminLTE Design Team
@@ -34,7 +40,7 @@
 			<li>
 				<a href="#">
 					<div class="pull-left">
-						<img src="img/avatar.png" class="img-circle" alt="user image"/>
+						<img src="<?php echo $bundle->baseUrl?>/img/avatar.png" class="img-circle" alt="user image"/>
 					</div>
 					<h4>
 						Developers
@@ -46,7 +52,7 @@
 			<li>
 				<a href="#">
 					<div class="pull-left">
-						<img src="img/avatar2.png" class="img-circle" alt="user image"/>
+						<img src="<?php echo $bundle->baseUrl?>/img/avatar2.png" class="img-circle" alt="user image"/>
 					</div>
 					<h4>
 						Sales Department
@@ -58,7 +64,7 @@
 			<li>
 				<a href="#">
 					<div class="pull-left">
-						<img src="img/avatar.png" class="img-circle" alt="user image"/>
+						<img src="<?php echo $bundle->baseUrl?>/img/avatar.png" class="img-circle" alt="user image"/>
 					</div>
 					<h4>
 						Reviewers

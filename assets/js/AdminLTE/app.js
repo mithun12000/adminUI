@@ -10,6 +10,17 @@
  * to change the values in the less files!
  */
 var left_side_width = 220; //Sidebar width in pixels
+function debug(msg){	
+    if ('info' in window.console) {
+            try{
+      window.console['info'](msg);
+            }catch(w){ window.console.log(msg);}
+    }
+    else {
+      window.console.log(msg);
+    }
+}
+
 
 $(function() {
     "use strict";
@@ -133,6 +144,26 @@ $(function() {
         checkboxClass: 'icheckbox_minimal',
         radioClass: 'iradio_minimal'
     });
+
+    $('input').on('ifChecked', function(event){        
+        if($(event.currentTarget).attr('data-checkall') == 1){            
+            if($(event.currentTarget).attr('data-parent-id') != 'undefined'){
+                $("#"+$(event.currentTarget).attr('data-parent-id')+" input[name='" + $(event.currentTarget).attr('data-target') + "']").iCheck('check');
+            }else{
+                $("input[name='" + $(event.currentTarget).attr('data-target') + "']").iCheck('check');
+            }
+        }
+     });
+     
+     $('input').on('ifUnchecked', function(event){
+        if($(event.currentTarget).attr('data-checkall') == 1){            
+            if($(event.currentTarget).attr('data-parent-id') != 'undefined'){
+                $("#"+$(event.currentTarget).attr('data-parent-id')+" input[name='" + $(event.currentTarget).attr('data-target') + "']:enabled").iCheck('uncheck');
+            }else{
+                $("input[name='" + $(event.currentTarget).attr('data-target') + "']:enabled").iCheck('uncheck');
+            }
+        }
+     });
 
 });
 function fix_sidebar() {

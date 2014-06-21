@@ -1,5 +1,6 @@
 <?php
 use backend\assets\AppAsset;
+#use backend\assets\AppUrlAsset;
 use yii\helpers\Html;
 use yii\adminUi\widget\Header;
 use yii\adminUi\widget\Nav;
@@ -8,13 +9,14 @@ use yii\adminUi\widget\NavBarUser;
 use yii\adminUi\widget\NavBarMessage;
 use yii\adminUi\widget\NavBarNotification;
 use yii\adminUi\widget\NavBarTask;
-use yii\widgets\Breadcrumbs;
+use yii\adminUi\widget\Breadcrumbs;
 
 /**
  * @var \yii\web\View $this
  * @var string $content
  */
 AppAsset::register($this);
+AppUrlAsset::register($this)->setParams($this);
 $this->beginPage()
 ?><!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
@@ -65,115 +67,90 @@ $this->beginPage()
                 <!-- sidebar: style can be found in sidebar.less -->
                 <section class="sidebar">
                     <!-- Sidebar user panel -->
-                    <div class="user-panel">
-                        <div class="pull-left image">
-                            <img src="img/avatar3.png" class="img-circle" alt="User Image" />
-                        </div>
-                        <div class="pull-left info">
-                            <p>Hello, Jane</p>
-
-                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                        </div>
-                    </div>
-                    <!-- search form -->
-                    <form action="#" method="get" class="sidebar-form">
-                        <div class="input-group">
-                            <input type="text" name="q" class="form-control" placeholder="Search..."/>
-                            <span class="input-group-btn">
-                                <button type='submit' name='seach' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
-                            </span>
-                        </div>
-                    </form>
-                    <!-- /.search form -->
-                    <!-- sidebar menu: : style can be found in sidebar.less -->
-                    <ul class="sidebar-menu">
-                        <li class="active">
-                            <a href="index.html">
-                                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="pages/widgets.html">
-                                <i class="fa fa-th"></i> <span>Widgets</span> <small class="badge pull-right bg-green">new</small>
-                            </a>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-bar-chart-o"></i>
-                                <span>Charts</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="pages/charts/morris.html"><i class="fa fa-angle-double-right"></i> Morris</a></li>
-                                <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Flot</a></li>
-                                <li><a href="pages/charts/inline.html"><i class="fa fa-angle-double-right"></i> Inline charts</a></li>
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-laptop"></i>
-                                <span>UI Elements</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="pages/UI/general.html"><i class="fa fa-angle-double-right"></i> General</a></li>
-                                <li><a href="pages/UI/icons.html"><i class="fa fa-angle-double-right"></i> Icons</a></li>
-                                <li><a href="pages/UI/buttons.html"><i class="fa fa-angle-double-right"></i> Buttons</a></li>
-                                <li><a href="pages/UI/sliders.html"><i class="fa fa-angle-double-right"></i> Sliders</a></li>
-                                <li><a href="pages/UI/timeline.html"><i class="fa fa-angle-double-right"></i> Timeline</a></li>
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-edit"></i> <span>Forms</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="pages/forms/general.html"><i class="fa fa-angle-double-right"></i> General Elements</a></li>
-                                <li><a href="pages/forms/advanced.html"><i class="fa fa-angle-double-right"></i> Advanced Elements</a></li>
-                                <li><a href="pages/forms/editors.html"><i class="fa fa-angle-double-right"></i> Editors</a></li>                                
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-table"></i> <span>Tables</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="pages/tables/simple.html"><i class="fa fa-angle-double-right"></i> Simple tables</a></li>
-                                <li><a href="pages/tables/data.html"><i class="fa fa-angle-double-right"></i> Data tables</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="pages/calendar.html">
-                                <i class="fa fa-calendar"></i> <span>Calendar</span>
-                                <small class="badge pull-right bg-red">3</small>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="pages/mailbox.html">
-                                <i class="fa fa-envelope"></i> <span>Mailbox</span>
-                                <small class="badge pull-right bg-yellow">12</small>
-                            </a>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
-                                <i class="fa fa-folder"></i> <span>Examples</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="pages/examples/invoice.html"><i class="fa fa-angle-double-right"></i> Invoice</a></li>
-                                <li><a href="pages/examples/login.html"><i class="fa fa-angle-double-right"></i> Login</a></li>
-                                <li><a href="pages/examples/register.html"><i class="fa fa-angle-double-right"></i> Register</a></li>
-                                <li><a href="pages/examples/lockscreen.html"><i class="fa fa-angle-double-right"></i> Lockscreen</a></li>
-                                <li><a href="pages/examples/404.html"><i class="fa fa-angle-double-right"></i> 404 Error</a></li>
-                                <li><a href="pages/examples/500.html"><i class="fa fa-angle-double-right"></i> 500 Error</a></li>                                
-                                <li><a href="pages/examples/blank.html"><i class="fa fa-angle-double-right"></i> Blank Page</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+                    <?php 
+                    echo NavBarUser::Widget(['type' =>'sidebar']);
+					
+                    
+                    $menuitems = [
+                        [
+                            'label' => 'Dashboard', 
+                            'url' => ['/site/index'],
+                            'linkOptions'=>[
+                                'class' => 'fa fa-dashboard',
+                            ]
+                        ],
+                        [
+                            'label' => 'Widgets', 
+                            'url' => ['/site/widget'],
+                            'linkOptions'=>[
+                                'class' => 'fa fa-th',                                
+                            ],
+                            'badgeOptions' => [
+                                'type' => 'new',
+                                'text' => 'new',
+                            ],
+                        ],
+                        [
+                            'label' => 'Charts', 
+                            #'url' => ['/site/chart'],
+                            'linkOptions'=>[
+                                'class' => 'fa fa-bar-chart-o',
+                            ],
+                            'items' => [
+                                [
+                                    'label' => 'Morris', 
+                                    'url' => ['/site/Morris'],
+                                    'linkOptions'=>[
+                                        'class' => 'fa fa-angle-double-right',
+                                    ]
+                                ],
+                                [
+                                    'label' => 'Flot', 
+                                    'url' => ['/site/Flot'],
+                                    'linkOptions'=>[
+                                        'class' => 'fa fa-angle-double-right',
+                                    ]
+                                ],
+                                [
+                                    'label' => 'Inline charts', 
+                                    'url' => ['/site/inline'],
+                                    'linkOptions'=>[
+                                        'class' => 'fa fa-angle-double-right',
+                                    ]
+                                ],
+                            ],
+                        ],
+                        [
+                            'label' => 'Calendar', 
+                            'url' => ['/site/Calendar'],
+                            'linkOptions'=>[
+                                'class' => 'fa fa-calendar',                                
+                            ],
+                            'badgeOptions' => [
+                                'type' => 'notification1',
+                                'text' => '3',
+                            ],
+                        ],
+                        [
+                            'label' => 'Mailbox', 
+                            'url' => ['/site/Mailbox'],
+                            'linkOptions'=>[
+                                'class' => 'fa fa-envelope',                                
+                            ],
+                            'badgeOptions' => [
+                                'type' => 'notification2',
+                                'text' => '13',
+                            ],
+                        ],
+                    ];
+                    
+                    //$menuitems = $this->params['urls'];
+                    echo Nav::widget([
+                        'options' => ['class' => 'sidebar-menu'],
+                        'items' => $menuitems,
+                    ]);
+                    ?>
                 </section>
-                <!-- /.sidebar -->
             </aside>
 
             <!-- Right side column. Contains the navbar and content of the page -->
@@ -181,16 +158,15 @@ $this->beginPage()
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Blank page
+                        <?php echo $this->params['pagename'];?>
                         <small>Control panel</small>
                     </h1>
-                    <?php /*/ Breadcrumbs::widget([
+                    <?php                     
+                    echo Breadcrumbs::widget([
+                        'tag'   => 'ol',
+                        'options'=>['class'=>'breadcrumb'],
                         'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                    ]) //*/?>
-                    <ol class="breadcrumb">
-                        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                        <li class="active">Blank page</li>
-                    </ol>
+                    ])?>
                 </section>
 
                 <!-- Main content -->
@@ -199,56 +175,6 @@ $this->beginPage()
                 </section><!-- /.content -->
             </aside><!-- /.right-side -->
         </div><!-- ./wrapper -->
-    
-    
-   <?php /*/?> 
-    <div class="wrap">
-        <?php
-            
-        NavBar::begin([
-                'brandLabel' => 'My Company',
-                'brandUrl' => Yii::$app->homeUrl,
-                'options' => [
-                    'class' => 'navbar-inverse navbar-fixed-top',
-                ],
-            ]);
-            
-            $menuItems = [
-                ['label' => 'Home', 'url' => ['/site/index']],
-            ];
-            if (Yii::$app->user->isGuest) {
-                $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-            } else {
-                $menuItems[] = [
-                    'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-                    'url' => ['/site/logout'],
-                    'linkOptions' => ['data-method' => 'post']
-                ];
-            }
-            
-            echo Nav::widget([
-                'options' => ['class' => 'navbar-nav navbar-right'],
-                'items' => $menuItems,
-            ]);
-            NavBar::end();
-            
-        ?>
-
-        <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= $content ?>
-        </div>
-    </div>
-
-    <footer class="footer">
-        <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-        <p class="pull-right"><?= Yii::powered() ?></p>
-        </div>
-    </footer>
-<?php //*/?>
     <?php $this->endBody() ?>
 </body>
 </html>
