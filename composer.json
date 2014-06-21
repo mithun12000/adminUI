@@ -4,8 +4,9 @@
   "version":"1.0.0",
   "keywords": [
     "yii2",
-	"thame",
-    "adminUi"
+	"theme",
+    "adminUi",
+	"layout"
   ],
   "type": "yii2-extension",
   "license": "GPLv2",
@@ -29,7 +30,7 @@
     "psr-4": {
       "yii\\adminUi\\": "",
 	  "vendor\\adminUi\\assets\\":"assets",
-	  "app\\themes\\adminui\\":"themes"
+	  "backend\\themes\\adminui\\":"themes"
     }
   },
   "extra":{

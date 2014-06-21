@@ -1,5 +1,4 @@
 <?php
-
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -21,15 +20,14 @@ class AdminUiBootstrap implements BootstrapInterface{
         $app->set('view', [
             'class'=>'yii\web\View',
             'theme' => [
-                'pathMap' => ['@app/views' => '@app/themes/adminui'],   // for Admin theme which resides on extension/adminui
+                'pathMap' => ['@backend/views' => '@backend/themes/adminui'],   // for Admin theme which resides on extension/adminui
                 'baseUrl' => '@web/themes/adminui',
             ],
         ]);
         
         Event::on(Controller::className(), Controller::EVENT_BEFORE_ACTION, function ($event) {
-            if($event->action->id == 'login'){
+            if($event->action->id == 'login' && in_array('backend',  explode("\\", $event->sender->className()))){
                 $event->sender->layout = '//blank';
-                //print_r($event);
             }
         });
     }
