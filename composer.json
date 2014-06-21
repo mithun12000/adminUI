@@ -33,6 +33,6 @@
     }
   },
   "extra":{
-	"bootstrap":'yii\adminUi\AdminUiBootstrap'
+	"bootstrap":"yii\\adminUi\\AdminUiBootstrap"
   }
 }
