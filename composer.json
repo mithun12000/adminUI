@@ -28,7 +28,7 @@
     "psr-4": {
       "yii\\adminUi\\": "",
 	  "vendor\\adminUi\\assets\\":"assets",
-	  "app\\themes\\adminui\\":"themes",
+	  "app\\themes\\adminui\\":"themes"
     }
   }
 }
