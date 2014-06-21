@@ -9,6 +9,16 @@ Its Under Development.
 
 Installation
 =======
+
+Using ```composer```
+
+```
+"require": {
+	...other dependency...	
+	"mithun12000/adminui":"*"
+},
+```
+
 Add as extension. Code:
 
 ```php
