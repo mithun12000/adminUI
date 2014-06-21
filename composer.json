@@ -1,6 +1,7 @@
 {
   "name": "mithun12000/adminui",
   "description": "Yii2 admin ui based on AdminLTE free template",
+  "version":"1.0.0",
   "keywords": [
     "yii2",
 	"thame",
@@ -30,5 +31,8 @@
 	  "vendor\\adminUi\\assets\\":"assets",
 	  "app\\themes\\adminui\\":"themes"
     }
+  },
+  "extra":{
+	"bootstrap":"yii\adminUi\AdminUiBootstrap"
   }
 }
