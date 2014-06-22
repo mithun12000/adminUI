@@ -26,6 +26,7 @@ class AdminUiBootstrap implements BootstrapInterface{
         ]);
 		
 		$app->set('assetManager' , [
+			'class'	=> 'yii\web\AssetManager',
             'bundles' => [                
                 'yii\bootstrap\BootstrapAsset' => [
                      'sourcePath' => null,
