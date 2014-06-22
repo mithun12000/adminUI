@@ -23,8 +23,9 @@
   ],
   "minimum-stability": "dev",
   "require": {
-    "yiisoft/yii2":"*",
-	"yiisoft/yii2-bootstrap": "*"
+    	"yiisoft/yii2":"*",
+	"yiisoft/yii2-bootstrap": "*",
+	"mithun12000/yii2-urlasset":"*"
   },
   "autoload": {
     "psr-4": {
