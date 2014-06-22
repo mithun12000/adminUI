@@ -24,6 +24,28 @@ class AdminUiBootstrap implements BootstrapInterface{
                 'baseUrl' => '@web/themes/adminui',
             ],
         ]);
+		
+		$app->set('assetManager' , [
+            'bundles' => [                
+                'yii\bootstrap\BootstrapAsset' => [
+                     'sourcePath' => null,
+                     'css' => []
+                ],
+                'yii\bootstrap\BootstrapPluginAsset' => [
+                     'sourcePath' => null,
+                     'js' => []
+                ],
+                'yii\grid\GridViewAsset' => [
+                    'depends'   => [
+                        'backend\assets\AppAsset'
+                    ],
+                ],
+				'backend\assets\AppAsset' => [
+					'css'	=> [],
+				],
+            ],            
+            'linkAssets' => true,
+        ]);
         
         Event::on(Controller::className(), Controller::EVENT_BEFORE_ACTION, function ($event) {
             if($event->action->id == 'login' && in_array('backend',  explode("\\", $event->sender->className()))){

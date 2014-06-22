@@ -1,6 +1,7 @@
 <?php
 use backend\assets\AppAsset;
-#use backend\assets\AppUrlAsset;
+use yii\adminUi\assetsBundle\AdminUiAsset;
+use yii\UrlAsset\component\UrlAsset;
 use yii\helpers\Html;
 use yii\adminUi\widget\Header;
 use yii\adminUi\widget\Nav;
@@ -16,8 +17,11 @@ use yii\adminUi\widget\Breadcrumbs;
  * @var string $content
  */
 AppAsset::register($this);
-AppUrlAsset::register($this)->setParams($this);
-$this->beginPage()
+AdminUiAsset::register($this);
+$urls = new UrlAsset();
+$urls->registerAll($this);
+$urls->setParams($this);
+$this->beginPage();
 ?><!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
@@ -144,7 +148,10 @@ $this->beginPage()
                         ],
                     ];
                     
-                    //$menuitems = $this->params['urls'];
+					if($this->params['urls']){
+						$menuitems = $this->params['urls'];
+					}
+                    
                     echo Nav::widget([
                         'options' => ['class' => 'sidebar-menu'],
                         'items' => $menuitems,

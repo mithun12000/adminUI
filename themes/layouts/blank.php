@@ -1,5 +1,6 @@
 <?php
 use backend\assets\AppAsset;
+use yii\adminUi\assetsBundle\AdminUiAsset;
 use yii\helpers\Html;
 use yii\adminUi\widget\Header;
 use yii\adminUi\widget\Nav;
@@ -15,6 +16,7 @@ use yii\widgets\Breadcrumbs;
  * @var string $content
  */
 AppAsset::register($this);
+AdminUiAsset::register($this);
 $this->beginPage()
 ?><!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
