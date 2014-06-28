@@ -1,6 +1,5 @@
 <?php
 use backend\assets\AppAsset;
-use yii\adminUi\assetsBundle\AdminUiAsset;
 use yii\UrlAsset\component\UrlAsset;
 use yii\helpers\Html;
 use yii\adminUi\widget\Header;
@@ -17,11 +16,10 @@ use yii\adminUi\widget\Breadcrumbs;
  * @var string $content
  */
 AppAsset::register($this);
-AdminUiAsset::register($this);
 $urls = new UrlAsset();
 $urls->registerAll($this);
 $urls->setParams($this);
-$this->beginPage();
+$this->beginPage()
 ?><!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
@@ -73,19 +71,19 @@ $this->beginPage();
                     <!-- Sidebar user panel -->
                     <?php 
                     echo NavBarUser::Widget(['type' =>'sidebar']);
-					
+                    
                     
                     $menuitems = [
                         [
                             'label' => 'Dashboard', 
-                            'url' => ['/site/index'],
+                            'url' => ['/adminuidemo'],
                             'linkOptions'=>[
                                 'class' => 'fa fa-dashboard',
                             ]
                         ],
                         [
                             'label' => 'Widgets', 
-                            'url' => ['/site/widget'],
+                            'url' => ['/adminuidemo/default/widget'],
                             'linkOptions'=>[
                                 'class' => 'fa fa-th',                                
                             ],
@@ -103,21 +101,21 @@ $this->beginPage();
                             'items' => [
                                 [
                                     'label' => 'Morris', 
-                                    'url' => ['/site/Morris'],
+                                    'url' => ['/adminuidemo/default/morris'],
                                     'linkOptions'=>[
                                         'class' => 'fa fa-angle-double-right',
                                     ]
                                 ],
                                 [
                                     'label' => 'Flot', 
-                                    'url' => ['/site/Flot'],
+                                    'url' => ['/adminuidemo/default/flot'],
                                     'linkOptions'=>[
                                         'class' => 'fa fa-angle-double-right',
                                     ]
                                 ],
                                 [
                                     'label' => 'Inline charts', 
-                                    'url' => ['/site/inline'],
+                                    'url' => ['/adminuidemo/default/inline'],
                                     'linkOptions'=>[
                                         'class' => 'fa fa-angle-double-right',
                                     ]
@@ -126,7 +124,7 @@ $this->beginPage();
                         ],
                         [
                             'label' => 'Calendar', 
-                            'url' => ['/site/Calendar'],
+                            'url' => ['/adminuidemo/default/calendar'],
                             'linkOptions'=>[
                                 'class' => 'fa fa-calendar',                                
                             ],
@@ -137,7 +135,7 @@ $this->beginPage();
                         ],
                         [
                             'label' => 'Mailbox', 
-                            'url' => ['/site/Mailbox'],
+                            'url' => ['/adminuidemo/default/mailbox'],
                             'linkOptions'=>[
                                 'class' => 'fa fa-envelope',                                
                             ],
@@ -151,7 +149,6 @@ $this->beginPage();
 					if($this->params['urls']){
 						$menuitems = $this->params['urls'];
 					}
-                    
                     echo Nav::widget([
                         'options' => ['class' => 'sidebar-menu'],
                         'items' => $menuitems,
@@ -165,8 +162,15 @@ $this->beginPage();
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        <?php echo $this->params['pagename'];?>
-                        <small>Control panel</small>
+                        <?php echo $this->title;?>
+                        <small>
+                            <?php
+                            if($this->params['pagelabel']){
+                                echo $this->params['pagelabel'];
+                            }else{ ?>
+                            Control panel
+                            <?php } ?>
+                        </small>
                     </h1>
                     <?php                     
                     echo Breadcrumbs::widget([
@@ -182,6 +186,56 @@ $this->beginPage();
                 </section><!-- /.content -->
             </aside><!-- /.right-side -->
         </div><!-- ./wrapper -->
+    
+    
+   <?php /*/?> 
+    <div class="wrap">
+        <?php
+            
+        NavBar::begin([
+                'brandLabel' => 'My Company',
+                'brandUrl' => Yii::$app->homeUrl,
+                'options' => [
+                    'class' => 'navbar-inverse navbar-fixed-top',
+                ],
+            ]);
+            
+            $menuItems = [
+                ['label' => 'Home', 'url' => ['/site/index']],
+            ];
+            if (Yii::$app->user->isGuest) {
+                $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+            } else {
+                $menuItems[] = [
+                    'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+                    'url' => ['/site/logout'],
+                    'linkOptions' => ['data-method' => 'post']
+                ];
+            }
+            
+            echo Nav::widget([
+                'options' => ['class' => 'navbar-nav navbar-right'],
+                'items' => $menuItems,
+            ]);
+            NavBar::end();
+            
+        ?>
+
+        <div class="container">
+        <?= Breadcrumbs::widget([
+            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+        ]) ?>
+        <?= $content ?>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-right"><?= Yii::powered() ?></p>
+        </div>
+    </footer>
+<?php //*/?>
     <?php $this->endBody() ?>
 </body>
 </html>

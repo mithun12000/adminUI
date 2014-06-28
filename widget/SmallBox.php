@@ -12,34 +12,17 @@ use yii\helpers\Html;
  * @author Mithun Mandal <mithun12000@gmail.com>
  * @since 2.0
  */
-class Box extends Widget
-{
-    const TYPE_SOLID = "box-solid";
-    const TYPE_DANGER = "box-danger";
-    const TYPE_INFO = "box-info";
-    const TYPE_PRIMARY = "box-primary";
-    const TYPE_SUCCESS = "box-success";
-    const TYPE_DEFAULT = "";
-
-    /**
-     * @var string the header content in the modal window.
-     */
+class SmallBox extends Widget
+{ 
     public $header;
     
-    public $headerIcon;
+    public $Icon;
     
-    public $headerButton;
+    public $caption;
     
-    public $headerButtonGroup;
-    /**
-     * @var string the footer content in the modal window.
-     */
-    public $footer;
-    /**
-     * @var string the modal size. Can be MODAL_LG or MODAL_SM, or empty for default.
-     */
-    public $type;
+    public $url;    
     
+    public $color;
     /**
      * Initializes the widget.
      */
@@ -49,7 +32,7 @@ class Box extends Widget
         $this->initOptions();
         
         echo Html::beginTag('div', $this->options) . "\n";
-        echo Html::beginTag('div', ['class' => 'box ' . $this->type]) . "\n";
+        echo Html::beginTag('div', ['class' => 'small-box '.$this->color]) . "\n";
         echo $this->renderHeader() . "\n";
         echo $this->renderBodyBegin() . "\n";
     }
@@ -59,6 +42,9 @@ class Box extends Widget
      */
     public function run()
     {
+        if($this->Icon !== NULL){
+            echo Html::tag('i', '',['class'=>'ion '.$this->Icon]);
+        }
         echo "\n" . $this->renderBodyEnd();
         echo "\n" . $this->renderFooter();
         echo "\n" . Html::endTag('div'); // modal-content
@@ -72,18 +58,12 @@ class Box extends Widget
     protected function renderHeader()
     {
         if ($this->header !== null) {
-            $content = '';
-            if($this->headerIcon !== null){
-               $content .=  Html::tag('i', '', ['class' => $this->headerIcon]);
+            $content = Html::tag('h3', $this->header);
+            
+            if($this->caption !== NULL){
+                $content .= Html::tag('p', $this->caption);
             }
-            
-            $content .=  Html::tag('h3', "\n" . $this->header . "\n", ['class' => 'box-title']);
-            
-            if($this->headerButton !== null){
-               $content .=  Html::tag('div', $this->headerButton, ['class' => ($this->headerButtonGroup) ? 'pull-right box-tools btn-group':'pull-right box-tools']);
-            }
-            
-            return Html::tag('div', $content, ['class' => 'box-header']);
+            return Html::tag('div', $content, ['class' => 'inner']);
         } else {
             return null;
         }
@@ -95,7 +75,7 @@ class Box extends Widget
      */
     protected function renderBodyBegin()
     {
-        return Html::beginTag('div', ['class' => 'box-body']);
+        return Html::beginTag('div', ['class' => 'icon']);
     }
 
     /**
@@ -113,11 +93,12 @@ class Box extends Widget
      */
     protected function renderFooter()
     {
-        if ($this->footer !== null) {
-            return Html::tag('div', "\n" . $this->footer . "\n", ['class' => 'box-footer clearfix']);
+        if ($this->url !== null) {
+            return Html::tag('a', 'More info <i class="fa fa-arrow-circle-right"></i>', ['class' => 'small-box-footer','href'=>$this->url]);
         } else {
             return null;
         }
+        
     }
 
     /**
@@ -126,8 +107,11 @@ class Box extends Widget
      */
     protected function initOptions()
     {
+        if(!$this->color){
+            $this->color = 'bg-aqua';
+        }
         $this->options = array_merge([
-            'class' => 'infobox',
+            'class' => 'col-lg-3 col-xs-6',
         ], $this->options);
         //Html::addCssClass($this->options, 'modal');
     }

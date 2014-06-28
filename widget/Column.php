@@ -25,6 +25,11 @@ class Column extends Widget
     const TYPE_BIG = "col-md-8";
     const TYPE_SMALL = "col-md-4";
     const TYPE_DEFAULT = "col-md-12";
+    
+    const TYPE_XS_FULL = "col-xs-12";
+    const TYPE_XS_HALF = "col-xs-6";
+    const TYPE_XS_BIG = "col-xs-8";
+    const TYPE_XS_SMALL = "col-xs-4";
 
     
     /**
