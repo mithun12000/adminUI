@@ -22,4 +22,16 @@ class ExamplesController extends Controller
     public function actionRegister() {
         return $this->render('register');
     }
+    
+    public function actionError404() {
+        return $this->render('404');
+    }
+    
+    public function actionError500() {
+        return $this->render('500');
+    }
+    
+    public function actionEmpty() {
+        return $this->render('blank');
+    }
 }

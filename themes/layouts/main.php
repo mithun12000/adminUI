@@ -101,25 +101,122 @@ $this->beginPage()
                             'items' => [
                                 [
                                     'label' => 'Morris', 
-                                    'url' => ['/adminuidemo/default/morris'],
+                                    'url' => ['/adminuidemo/chart/morris'],
                                     'linkOptions'=>[
                                         'class' => 'fa fa-angle-double-right',
                                     ]
                                 ],
                                 [
                                     'label' => 'Flot', 
-                                    'url' => ['/adminuidemo/default/flot'],
+                                    'url' => ['/adminuidemo/chart/flot'],
                                     'linkOptions'=>[
                                         'class' => 'fa fa-angle-double-right',
                                     ]
                                 ],
                                 [
                                     'label' => 'Inline charts', 
-                                    'url' => ['/adminuidemo/default/inline'],
+                                    'url' => ['/adminuidemo/chart/inline'],
                                     'linkOptions'=>[
                                         'class' => 'fa fa-angle-double-right',
                                     ]
                                 ],
+                            ],
+                        ],
+                        [
+                            'label' => 'UI Elements', 
+                            #'url' => ['/site/chart'],
+                            'linkOptions'=>[
+                                'class' => 'fa fa-laptop',
+                            ],
+                            'items' => [
+                                [
+                                    'label' => 'General', 
+                                    'url' => ['/adminuidemo/ui/general'],
+                                    'linkOptions'=>[
+                                        'class' => 'fa fa-angle-double-right',
+                                    ]
+                                ],
+                                [
+                                    'label' => 'Icons', 
+                                    'url' => ['/adminuidemo/ui/icons'],
+                                    'linkOptions'=>[
+                                        'class' => 'fa fa-angle-double-right',
+                                    ]
+                                ],
+                                [
+                                    'label' => 'Buttons', 
+                                    'url' => ['/adminuidemo/ui/buttons'],
+                                    'linkOptions'=>[
+                                        'class' => 'fa fa-angle-double-right',
+                                    ]
+                                ],
+                                [
+                                    'label' => 'Sliders', 
+                                    'url' => ['/adminuidemo/ui/sliders'],
+                                    'linkOptions'=>[
+                                        'class' => 'fa fa-angle-double-right',
+                                    ]
+                                ],
+                                [
+                                    'label' => 'Timeline', 
+                                    'url' => ['/adminuidemo/ui/timeline'],
+                                    'linkOptions'=>[
+                                        'class' => 'fa fa-angle-double-right',
+                                    ]
+                                ],
+                            ],
+                        ],
+                        [
+                            'label' => 'Forms', 
+                            #'url' => ['/site/chart'],
+                            'linkOptions'=>[
+                                'class' => 'fa fa-edit',
+                            ],
+                            'items' => [
+                                [
+                                    'label' => 'General Elements', 
+                                    'url' => ['/adminuidemo/forms/general'],
+                                    'linkOptions'=>[
+                                        'class' => 'fa fa-angle-double-right',
+                                    ]
+                                ],
+                                [
+                                    'label' => 'Advanced Elements', 
+                                    'url' => ['/adminuidemo/forms/advanced'],
+                                    'linkOptions'=>[
+                                        'class' => 'fa fa-angle-double-right',
+                                    ]
+                                ],
+                                [
+                                    'label' => 'Editors', 
+                                    'url' => ['/adminuidemo/forms/editors'],
+                                    'linkOptions'=>[
+                                        'class' => 'fa fa-angle-double-right',
+                                    ]
+                                ]
+                            ],
+                        ],
+                        [
+                            'label' => 'Tables', 
+                            #'url' => ['/site/chart'],
+                            'linkOptions'=>[
+                                'class' => 'fa fa-table',
+                            ],
+                            'items' => [
+                                [
+                                    'label' => 'Simple tables', 
+                                    'url' => ['/adminuidemo/tables/simple'],
+                                    'linkOptions'=>[
+                                        'class' => 'fa fa-angle-double-right',
+                                    ]
+                                ],
+                                [
+                                    'label' => 'Data tables', 
+                                    'url' => ['/adminuidemo/tables/data'],
+                                    'linkOptions'=>[
+                                        'class' => 'fa fa-angle-double-right',
+                                    ]
+                                ]
                             ],
                         ],
                         [
@@ -142,6 +239,64 @@ $this->beginPage()
                             'badgeOptions' => [
                                 'type' => 'notification2',
                                 'text' => '13',
+                            ],
+                        ],
+                        [
+                            'label' => 'Examples', 
+                            #'url' => ['/site/chart'],
+                            'linkOptions'=>[
+                                'class' => 'fa fa-folder',
+                            ],
+                            'items' => [
+                                [
+                                    'label' => 'Invoice', 
+                                    'url' => ['/adminuidemo/examples/invoice'],
+                                    'linkOptions'=>[
+                                        'class' => 'fa fa-angle-double-right',
+                                    ]
+                                ],
+                                [
+                                    'label' => 'Login', 
+                                    'url' => ['/adminuidemo/examples/login'],
+                                    'linkOptions'=>[
+                                        'class' => 'fa fa-angle-double-right',
+                                    ]
+                                ],
+                                [
+                                    'label' => 'Register', 
+                                    'url' => ['/adminuidemo/examples/register'],
+                                    'linkOptions'=>[
+                                        'class' => 'fa fa-angle-double-right',
+                                    ]
+                                ],
+                                [
+                                    'label' => 'Lockscreen', 
+                                    'url' => ['/adminuidemo/examples/lockscreen'],
+                                    'linkOptions'=>[
+                                        'class' => 'fa fa-angle-double-right',
+                                    ]
+                                ],
+                                [
+                                    'label' => '404 Error', 
+                                    'url' => ['/adminuidemo/examples/error404'],
+                                    'linkOptions'=>[
+                                        'class' => 'fa fa-angle-double-right',
+                                    ]
+                                ],
+                                [
+                                    'label' => '500 Error', 
+                                    'url' => ['/adminuidemo/examples/error500'],
+                                    'linkOptions'=>[
+                                        'class' => 'fa fa-angle-double-right',
+                                    ]
+                                ],
+                                [
+                                    'label' => 'Blank Page', 
+                                    'url' => ['/adminuidemo/examples/empty'],
+                                    'linkOptions'=>[
+                                        'class' => 'fa fa-angle-double-right',
+                                    ]
+                                ]
                             ],
                         ],
                     ];
