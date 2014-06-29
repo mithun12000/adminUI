@@ -1,4 +1,9 @@
-                    <!-- MAILBOX BEGIN -->
+<?php
+$this->title = 'Mailbox';
+$this->params['breadcrumbs'][] = $this->title;
+$this->params['pagelabel'] = '';
+?>
+<!-- MAILBOX BEGIN -->
                     <div class="mailbox row">
                         <div class="col-xs-12">
                             <div class="box box-solid">

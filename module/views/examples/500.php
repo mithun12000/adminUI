@@ -1,4 +1,9 @@
-                 
+<?php
+$this->title = '500 error';
+$this->params['breadcrumbs'][] = ['label' => 'Example', 'url' => ['#']];
+$this->params['breadcrumbs'][] = $this->title;
+$this->params['pagelabel'] = '';
+?>                 
                     <div class="error-page">
                         <h2 class="headline">500</h2>
                         <div class="error-content">

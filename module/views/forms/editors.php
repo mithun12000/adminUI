@@ -1,4 +1,10 @@
-                    <div class='row'>
+<?php
+$this->title = 'Text Editors';
+$this->params['breadcrumbs'][] = ['label' => 'Forms', 'url' => ['#']];
+$this->params['breadcrumbs'][] = $this->title;
+$this->params['pagelabel'] = 'Advanced form element';
+?>
+<div class='row'>
                         <div class='col-md-12'>
                             <div class='box box-info'>
                                 <div class='box-header'>

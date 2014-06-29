@@ -1,4 +1,9 @@
-
+<?php
+$this->title = '404 error';
+$this->params['breadcrumbs'][] = ['label' => 'Example', 'url' => ['#']];
+$this->params['breadcrumbs'][] = $this->title;
+$this->params['pagelabel'] = '';
+?>
                  
                     <div class="error-page">
                         <h2 class="headline text-info"> 404</h2>

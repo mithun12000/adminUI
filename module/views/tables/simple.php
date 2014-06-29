@@ -1,4 +1,10 @@
-                    <div class="row">
+<?php
+$this->title = 'Simple Tables';
+$this->params['breadcrumbs'][] = ['label' => 'Tables', 'url' => ['#']];
+$this->params['breadcrumbs'][] = $this->title;
+$this->params['pagelabel'] = 'preview of simple tables';
+?>
+<div class="row">
                         <div class="col-md-6">
                             <div class="box">
                                 <div class="box-header">

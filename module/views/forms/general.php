@@ -1,4 +1,10 @@
-                    <div class="row">
+<?php
+$this->title = 'General Form Elements';
+$this->params['breadcrumbs'][] = ['label' => 'Forms', 'url' => ['#']];
+$this->params['breadcrumbs'][] = $this->title;
+$this->params['pagelabel'] = 'Preview';
+?>
+<div class="row">
                         <!-- left column -->
                         <div class="col-md-6">
                             <!-- general form elements -->

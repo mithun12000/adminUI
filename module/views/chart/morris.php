@@ -1,4 +1,10 @@
-                    <div class="row">
+<?php
+$this->title = 'Morris Charts';
+$this->params['breadcrumbs'][] = ['label' => 'Chart', 'url' => ['#']];
+$this->params['breadcrumbs'][] = 'Morris';
+$this->params['pagelabel'] = 'Preview sample';
+?>
+<div class="row">
                         <div class="col-md-6">
                             <!-- AREA CHART -->
                             <div class="box box-primary">

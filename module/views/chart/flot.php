@@ -1,4 +1,10 @@
-                    <div class="row">
+<?php
+$this->title = 'Flot Charts';
+$this->params['breadcrumbs'][] = ['label' => 'Chart', 'url' => ['#']];
+$this->params['breadcrumbs'][] = $this->title;
+$this->params['pagelabel'] = 'preview sample';
+?>
+<div class="row">
                         <div class="col-xs-12">
                             <!-- interactive chart -->
                             <div class="box box-primary">

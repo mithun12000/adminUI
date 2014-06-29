@@ -1,4 +1,10 @@
-                    <div class='row'>
+<?php
+$this->title = 'Jquery Ui';
+$this->params['breadcrumbs'][] = ['label' => 'Ui', 'url' => ['#']];
+$this->params['breadcrumbs'][] = $this->title;
+$this->params['pagelabel'] = 'Jquery Ui';
+?>
+<div class='row'>
                         <div class='col-md-6'>
                             <div class='box box-primary'>
                                 <div class='box-header'>

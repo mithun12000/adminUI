@@ -1,4 +1,10 @@
-                    <div class='row'>
+<?php
+$this->title = 'Icons';
+$this->params['breadcrumbs'][] = ['label' => 'Ui', 'url' => ['#']];
+$this->params['breadcrumbs'][] = $this->title;
+$this->params['pagelabel'] = 'a set of beautiful icons';
+?>
+<div class='row'>
                         <div class='col-xs-12'>
                             <div class="nav-tabs-custom">
                                 <ul class="nav nav-tabs">

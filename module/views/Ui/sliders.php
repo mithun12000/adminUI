@@ -1,4 +1,10 @@
-                    <div class="row">
+<?php
+$this->title = 'Sliders';
+$this->params['breadcrumbs'][] = ['label' => 'Ui', 'url' => ['#']];
+$this->params['breadcrumbs'][] = $this->title;
+$this->params['pagelabel'] = 'range sliders';
+?>
+<div class="row">
                         <div class="col-xs-12">
                             <div class="box box-primary">
                                 <div class="box-header">

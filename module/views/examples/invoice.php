@@ -1,4 +1,9 @@
-                   
+<?php
+$this->title = 'Invoice';
+$this->params['breadcrumbs'][] = ['label' => 'Example', 'url' => ['#']];
+$this->params['breadcrumbs'][] = $this->title;
+$this->params['pagelabel'] = '#007612';
+?>                   
                     <!-- title row -->
                     <div class="row">
                         <div class="col-xs-12">

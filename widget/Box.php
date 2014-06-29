@@ -4,6 +4,7 @@ namespace yii\adminUi\widget;
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii;
 
 /**
  * Bootstrap box component.
@@ -19,18 +20,37 @@ class Box extends Widget
     const TYPE_INFO = "box-info";
     const TYPE_PRIMARY = "box-primary";
     const TYPE_SUCCESS = "box-success";
+    const TYPE_WARNING = "box-warning";
     const TYPE_DEFAULT = "";
+    
+    const POSITION_HEADER = 0;
+    const POSITION_FOOTER = 1;
 
     /**
      * @var string the header content in the modal window.
      */
     public $header;
     
+    public $headeroption = [];
+    
+    
+    public $template = '{collapse} {remove}';
+    
+    public $buttons = [];
+    
+    public $usebutton = false;
+    public $usebuttonPosition = self::POSITION_HEADER;
+    
+    public $buttonoption = [];
+
+
     public $headerIcon;
     
     public $headerButton;
     
     public $headerButtonGroup;
+    
+    public $loading = false;
     /**
      * @var string the footer content in the modal window.
      */
@@ -47,6 +67,7 @@ class Box extends Widget
     {
         parent::init();
         $this->initOptions();
+        $this->initDefaultButtons();
         
         echo Html::beginTag('div', $this->options) . "\n";
         echo Html::beginTag('div', ['class' => 'box ' . $this->type]) . "\n";
@@ -60,6 +81,10 @@ class Box extends Widget
     public function run()
     {
         echo "\n" . $this->renderBodyEnd();
+        if($this->loading){
+            echo Html::tag('div','',['class'=>'overlay']);
+            echo Html::tag('div','',['class'=>'loading-img']);
+        }
         echo "\n" . $this->renderFooter();
         echo "\n" . Html::endTag('div'); // modal-content
         echo "\n" . Html::endTag('div');
@@ -83,7 +108,14 @@ class Box extends Widget
                $content .=  Html::tag('div', $this->headerButton, ['class' => ($this->headerButtonGroup) ? 'pull-right box-tools btn-group':'pull-right box-tools']);
             }
             
-            return Html::tag('div', $content, ['class' => 'box-header']);
+            if($this->usebutton){
+                if($this->usebuttonPosition == self::POSITION_HEADER){
+                    $btns = $this->rendertemplate($this->buttonoption);
+                    $content .= Html::tag('div', $btns, ['class' => 'pull-right box-tools']);
+                }
+            }
+            
+            return Html::tag('div', $content, array_merge(['class' => 'box-header'],  $this->headeroption));
         } else {
             return null;
         }
@@ -114,7 +146,14 @@ class Box extends Widget
     protected function renderFooter()
     {
         if ($this->footer !== null) {
-            return Html::tag('div', "\n" . $this->footer . "\n", ['class' => 'box-footer clearfix']);
+            $content = $this->footer;
+            if($this->usebutton){
+                if($this->usebuttonPosition == self::POSITION_FOOTER){
+                    $btns = $this->rendertemplate($this->buttonoption);
+                    $content .= Html::tag('div', $btns, ['class' => 'pull-right box-tools']);
+                }
+            }
+            return Html::tag('div', "\n" . $content . "\n", ['class' => 'box-footer clearfix']);            
         } else {
             return null;
         }
@@ -130,5 +169,54 @@ class Box extends Widget
             'class' => 'infobox',
         ], $this->options);
         //Html::addCssClass($this->options, 'modal');
+    }
+    
+    /**
+     * Initializes the default button rendering callbacks
+     */
+    protected function initDefaultButtons()
+    {
+        if (!isset($this->buttons['collapse'])) {
+            $this->buttons['collapse'] = function ($option) {
+                $option['class'] = 'btn '.$option['class'];
+                $option['data-widget'] = 'collapse';
+                $option['data-toggle'] = 'tooltip';
+                $option['title'] = Yii::t('yii', 'Collapse');
+                
+                if($option['notitle']){
+                    unset($option['notitle'],$option['title']);
+                }
+                
+                return Html::tag('button','<i class="fa fa-minus"></i>', $option);
+            };
+        }
+        if (!isset($this->buttons['remove'])) {
+            $this->buttons['remove'] = function ($option) {
+                $option['class'] = 'btn '.$option['class'];
+                $option['data-widget'] = 'remove';
+                $option['data-toggle'] = 'tooltip';
+                $option['title'] = Yii::t('yii', 'Remove');
+                
+                if($option['notitle']){
+                    unset($option['notitle'],$option['title']);
+                }
+                return Html::tag('button','<i class="fa fa-times"></i>', $option);
+            };
+        }        
+    }
+    
+    /**
+     * @inheritdoc
+     */
+    protected function rendertemplate($option)
+    {
+        return preg_replace_callback('/\\{([\w\-\/]+)\\}/', function ($matches) use ($option) {
+            $name = $matches[1];
+            if (isset($this->buttons[$name])) {
+                return call_user_func($this->buttons[$name], $option);
+            } else {
+                return '';
+            }
+        }, $this->template);
     }
 }

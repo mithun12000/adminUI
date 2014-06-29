@@ -1,4 +1,9 @@
-
+<?php
+$this->title = 'General UI';
+$this->params['breadcrumbs'][] = ['label' => 'Ui', 'url' => ['#']];
+$this->params['breadcrumbs'][] = $this->title;
+$this->params['pagelabel'] = 'Preview of UI elements';
+?>
                     <!-- START ALERTS AND CALLOUTS -->
                     <h2 class="page-header">Alerts and Callouts</h2>
                     <div class="row">

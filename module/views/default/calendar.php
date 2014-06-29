@@ -1,3 +1,8 @@
+<?php
+$this->title = 'Calendar ';
+//$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
+?>
 <div class="row">
                         <div class="col-md-3">
                             <div class="box box-primary">

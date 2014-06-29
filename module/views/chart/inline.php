@@ -1,4 +1,9 @@
-
+<?php
+$this->title = 'Inline Charts';
+$this->params['breadcrumbs'][] = ['label' => 'Chart', 'url' => ['#']];
+$this->params['breadcrumbs'][] = $this->title;
+$this->params['pagelabel'] = 'multiple types of charts';
+?>
 
                     <!-- row -->
                     <div class="row">

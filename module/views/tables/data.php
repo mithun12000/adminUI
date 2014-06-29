@@ -1,4 +1,10 @@
-                    <div class="row">
+<?php
+$this->title = 'Data Tables';
+$this->params['breadcrumbs'][] = ['label' => 'Tables', 'url' => ['#']];
+$this->params['breadcrumbs'][] = $this->title;
+$this->params['pagelabel'] = 'advanced tables';
+?>
+<div class="row">
                         <div class="col-xs-12">
                             <div class="box">
                                 <div class="box-header">

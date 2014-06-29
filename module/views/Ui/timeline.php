@@ -1,4 +1,10 @@
-                    <!-- row -->
+<?php
+$this->title = 'Timeline ';
+$this->params['breadcrumbs'][] = ['label' => 'Ui', 'url' => ['#']];
+$this->params['breadcrumbs'][] = $this->title;
+$this->params['pagelabel'] = 'Example';
+?>
+<!-- row -->
                     <div class="row">                        
                         <div class="col-md-12">
                             <!-- The time line -->
