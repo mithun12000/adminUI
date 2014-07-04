@@ -1,9 +1,4 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
 
 namespace yii\adminUi\widget;
 
@@ -12,30 +7,47 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 /**
- * Dropdown renders a Bootstrap dropdown menu component.
+ * Column renders a Bootstrap Grid component.
  *
- * @see http://getbootstrap.com/javascript/#dropdowns
- * @author Antonio Ramirez <amigo.cobos@gmail.com>
+ * @see http://getbootstrap.com/css/#grid
+ * @author Mithun Mandal <mithun12000@gmail.com>
  * @since 2.0
  */
 class Column extends Widget
 {
-    const TYPE_FULL = "col-md-12";
-    const TYPE_HALF = "col-md-6";
-    const TYPE_BIG = "col-md-8";
-    const TYPE_SMALL = "col-md-4";
-    const TYPE_DEFAULT = "col-md-12";
+    const SIZE_FULL = 12;
+    const SIZE_HALF = 6;
+    const SIZE_BIG = 8;
+    const SIZE_SMALL = 4;    
+    const SIZE_DEFAULT = 12;
     
-    const TYPE_XS_FULL = "col-xs-12";
-    const TYPE_XS_HALF = "col-xs-6";
-    const TYPE_XS_BIG = "col-xs-8";
-    const TYPE_XS_SMALL = "col-xs-4";
+    const TYPE_MOBILE = 'col-xs-';
+    const TYPE_TABLET = 'col-sm-';
+    const TYPE_BIG = 'col-lg-';
+    const TYPE_DESKTOP = 'col-md-';
+    
+    const DEFAULT_TYPE = 'col-md-';
 
     
     /**
-     * @var string the modal size. Can be MODAL_LG or MODAL_SM, or empty for default.
+     * @var array the grid
+     * example: [
+     *      [
+     *          type => self::TYPE_DESKTOP,
+     *          size => self::SIZE_SMALL
+     *      ],
+     *      [
+     *          type => self::TYPE_MOBILE,
+     *          size => self::SIZE_FULL
+     *      ],
+     *      [
+     *          type => self::TYPE_MOBILE,
+     *          size => 3,
+     *          positiontype => 'pull',     options are pull|push|offset
+     *      ],
+     * ]
      */
-    public $type;
+    public $grid;
     
     /**
      * Initializes the widget.
@@ -62,14 +74,32 @@ class Column extends Widget
      */
     protected function initOptions()
     {
-        if($this->type){
+        if($this->grid){
             $this->options = array_merge([
-            'class' => $this->type,
+            'class' => $this->getGridClass().' '.$this->options['class'],
             ], $this->options);
         }else{
             $this->options = array_merge([
-            'class' => self::TYPE_DEFAULT,
+            'class' => self::DEFAULT_TYPE.self::SIZE_DEFAULT,
             ], $this->options);
         }
+    }
+    
+    /**
+     * Generate Grid Class for Div element
+     * @return string Html Class Value
+     */
+    private function getGridClass() {
+        $class = [];
+        foreach($this->grid as $grid){
+            if(!isset($grid['type']) || !isset($grid['size'])){
+                throw new InvalidConfigException(get_called_class() . ' must have type and size.');
+            }
+            if(!isset($grid['positiontype']))
+                $class[] = $grid['type'].$grid['size'];
+            else
+                $class[] = $grid['type'].$grid['positiontype'].'-'.$grid['size'];            
+        }
+        return implode(' ',$class);
     }
 }

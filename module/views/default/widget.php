@@ -52,7 +52,14 @@ Row::begin();
    
 Row::end();
 Row::begin();
-    Column::begin(['type'=> 'col-xs-12 connectedSortable']);
+    Column::begin(['grid'=> [
+                                [
+                                    'type'=>Column::TYPE_MOBILE,
+                                    'size' => Column::SIZE_FULL,
+                                ],
+                            ],
+                   'options' => ['class'=>'connectedSortable']
+		]);
     Column::end();
 Row::end();
 
@@ -90,7 +97,14 @@ Row::begin();
    
 Row::end();
 Row::begin();
-    Column::begin(['type'=> 'col-xs-12 connectedSortable']);
+    Column::begin(['grid'=> [
+                                [
+                                    'type'=>Column::TYPE_MOBILE,
+                                    'size' => Column::SIZE_FULL,
+                                ],
+                            ],
+                   'options' => ['class'=>'connectedSortable']
+		]);
     Column::end();
 Row::end();
 
@@ -102,8 +116,14 @@ AdminLTE Boxes
 <?php
 PageHeader::end();
 
-Row::begin();
-    Column::begin(['type'=> Column::TYPE_SMALL]);
+Row::begin();    
+	Column::begin(['grid'=> [
+                                    [
+                                        'type'=>Column::TYPE_DESKTOP,
+                                        'size' => Column::SIZE_SMALL,
+                                    ],
+                                ],
+                        ]);
     Box::begin([
         'header'=> 'Default Box (button tooltip)',
         'usebutton' => true,
@@ -119,7 +139,13 @@ Row::begin();
     <?php Box::end();
     Column::end();
     
-    Column::begin(['type'=> Column::TYPE_SMALL]);
+    Column::begin(['grid'=> [
+                                    [
+                                        'type'=>Column::TYPE_DESKTOP,
+                                        'size' => Column::SIZE_SMALL,
+                                    ],
+                                ],
+                        ]);
     Box::begin([
         'type'  => Box::TYPE_PRIMARY,
         'header'=> 'Primary Box (header tooltip)',
@@ -137,7 +163,13 @@ Row::begin();
     <?php Box::end();
     Column::end();
     
-    Column::begin(['type'=> Column::TYPE_SMALL]);
+    Column::begin(['grid'=> [
+                                    [
+                                        'type'=>Column::TYPE_DESKTOP,
+                                        'size' => Column::SIZE_SMALL,
+                                    ],
+                                ],
+                        ]);
     Box::begin([
         'type'  => Box::TYPE_INFO,
         'header'=> 'Info Box',
@@ -156,7 +188,13 @@ Row::end();
 
 
 Row::begin();
-    Column::begin(['type'=> Column::TYPE_SMALL]);
+    Column::begin(['grid'=> [
+                                    [
+                                        'type'=>Column::TYPE_DESKTOP,
+                                        'size' => Column::SIZE_SMALL,
+                                    ],
+                                ],
+                        ]);
     Box::begin([
         'type'  => Box::TYPE_DANGER,
         'header'=> 'Danger Box (Loading state)',
@@ -173,7 +211,13 @@ Row::begin();
     <?php Box::end();
     Column::end();
     
-    Column::begin(['type'=> Column::TYPE_SMALL]);
+    Column::begin(['grid'=> [
+                                    [
+                                        'type'=>Column::TYPE_DESKTOP,
+                                        'size' => Column::SIZE_SMALL,
+                                    ],
+                                ],
+                        ]);
     Box::begin([
         'type'  => Box::TYPE_SUCCESS,
         'header'=> 'Success Box (toggle buttons)',
@@ -189,7 +233,13 @@ Row::begin();
     <?php Box::end();
     Column::end();
     
-    Column::begin(['type'=> Column::TYPE_SMALL]);
+    Column::begin(['grid'=> [
+                                    [
+                                        'type'=>Column::TYPE_DESKTOP,
+                                        'size' => Column::SIZE_SMALL,
+                                    ],
+                                ],
+                        ]);
     Box::begin([
         'type'  => Box::TYPE_WARNING,
         'header'=> 'Warning Box',
@@ -214,7 +264,13 @@ AdminLTE Solid Boxes
 PageHeader::end();
 
 Row::begin();
-    Column::begin(['type'=> Column::TYPE_SMALL]);
+    Column::begin(['grid'=> [
+                                    [
+                                        'type'=>Column::TYPE_DESKTOP,
+                                        'size' => Column::SIZE_SMALL,
+                                    ],
+                                ],
+                        ]);
     Box::begin([
         'type'  => Box::TYPE_SOLID,
         'header'=> 'Default Solid Box',
@@ -230,7 +286,13 @@ Row::begin();
     <?php Box::end();
     Column::end();
     
-    Column::begin(['type'=> Column::TYPE_SMALL]);
+    Column::begin(['grid'=> [
+                                    [
+                                        'type'=>Column::TYPE_DESKTOP,
+                                        'size' => Column::SIZE_SMALL,
+                                    ],
+                                ],
+                        ]);
     Box::begin([
         'type'  => Box::TYPE_SOLID.' '.Box::TYPE_PRIMARY,
         'header'=> 'Primary Solid Box',
@@ -246,7 +308,13 @@ Row::begin();
     <?php Box::end();
     Column::end();
     
-    Column::begin(['type'=> Column::TYPE_SMALL]);
+    Column::begin(['grid'=> [
+                                    [
+                                        'type'=>Column::TYPE_DESKTOP,
+                                        'size' => Column::SIZE_SMALL,
+                                    ],
+                                ],
+                        ]);
     Box::begin([
         'type'  => Box::TYPE_SOLID.' '.Box::TYPE_INFO,
         'header'=> 'Info Solid Box',
@@ -265,7 +333,13 @@ Row::end();
 
 
 Row::begin();
-    Column::begin(['type'=> Column::TYPE_SMALL]);
+    Column::begin(['grid'=> [
+                                    [
+                                        'type'=>Column::TYPE_DESKTOP,
+                                        'size' => Column::SIZE_SMALL,
+                                    ],
+                                ],
+                        ]);
     Box::begin([
         'type'  => Box::TYPE_SOLID.' '.Box::TYPE_DANGER,
         'header'=> 'Danger Solid Box',
@@ -281,7 +355,13 @@ Row::begin();
     <?php Box::end();
     Column::end();
     
-    Column::begin(['type'=> Column::TYPE_SMALL]);
+    Column::begin(['grid'=> [
+                                    [
+                                        'type'=>Column::TYPE_DESKTOP,
+                                        'size' => Column::SIZE_SMALL,
+                                    ],
+                                ],
+                        ]);
     Box::begin([
         'type'  => Box::TYPE_SOLID.' '.Box::TYPE_SUCCESS,
         'header'=> 'Success Solid Box',
@@ -297,7 +377,13 @@ Row::begin();
     <?php Box::end();
     Column::end();
     
-    Column::begin(['type'=> Column::TYPE_SMALL]);
+    Column::begin(['grid'=> [
+                                    [
+                                        'type'=>Column::TYPE_DESKTOP,
+                                        'size' => Column::SIZE_SMALL,
+                                    ],
+                                ],
+                        ]);
     Box::begin([
         'type'  => Box::TYPE_SOLID.' '.Box::TYPE_WARNING,
         'header'=> 'Warning Solid Box',

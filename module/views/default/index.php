@@ -40,7 +40,14 @@ Row::begin();
    
 Row::end();
 Row::begin();
-    Column::begin(['type'=> 'col-xs-12 connectedSortable']);
+    Column::begin(['grid'=> [
+                                [
+                                    'type'=>Column::TYPE_MOBILE,
+                                    'size' => Column::SIZE_FULL,
+                                ],
+                            ],
+                   'options' => ['class'=>'connectedSortable']
+		]);
     Column::end();
 Row::end();
 ?>
