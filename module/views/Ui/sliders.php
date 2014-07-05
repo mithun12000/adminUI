@@ -1,4 +1,10 @@
 <?php
+use yii\adminUi\assetsBundle\AdminUiPluginSliderAsset,
+ yii\adminUi\assetsBundle\AdminUiPluginIonSliderAsset;
+
+AdminUiPluginIonSliderAsset::register($this);
+AdminUiPluginSliderAsset::register($this);
+
 $this->title = 'Sliders';
 $this->params['breadcrumbs'][] = ['label' => 'Ui', 'url' => ['#']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -13,24 +19,24 @@ $this->params['pagelabel'] = 'range sliders';
                                 <div class="box-body">
                                     <div class="row margin">
                                         <div class="col-sm-6">
-                                            <input id="range_1" type="text" name="range_1" value="" />
+                                            <input id="range_1" type="text" name="range_1" value="0;5000" class="ionslider form-control" data-type="double" data-step="1" data-prefix="$" data-from="1000" data-to="4000" data-max="5000" data-min="0" data-hasgrid="true" data-prettify="false"  />
                                         </div>
 
                                         <div class="col-sm-6">
-                                            <input id="range_2" type="text" name="range_2" value="1000;100000" data-type="double" data-step="500" data-postfix=" &euro;" data-from="30000" data-to="90000" data-hasgrid="true" />
+                                            <input id="range_2" type="text" name="range_2" class="ionslider form-control" value="1000;100000" data-type="double" data-step="500" data-postfix=" &euro;" data-from="30000" data-to="90000" data-hasgrid="true" />
                                         </div>
                                     </div>
                                     <div class="row margin">
                                         <div class="col-sm-6">
-                                            <input id="range_5" type="text" name="range_5" value="" />
+                                            <input id="range_5" type="text" name="range_5" value="0;10" class="ionslider form-control" data-type="single" data-step="0.1" data-postfix="mm" data-max="10" data-min="0" data-hasgrid="true" data-prettify="false" />
                                         </div>
                                         <div class="col-sm-6">
-                                            <input id="range_6" type="text" name="range_6" value="" />
+                                            <input id="range_6" type="text" name="range_6" value="-50;50" class="ionslider form-control" data-type="single" data-step="1" data-postfix="°" data-from="0" data-max="50" data-min="-50" data-hasgrid="true" data-prettify="false" />
                                         </div>
                                     </div>
                                     <div class="row margin">
                                         <div class="col-sm-12">
-                                            <input id="range_4" type="text" name="range_4" value="10000;100000" />
+                                            <input id="range_4" type="text" name="range_4" value="10000;100000" class="ionslider form-control" data-type="single" data-step="100" data-postfix=" light years" data-from="55000" data-hideMinMax="true" data-hideFromTo="false"  />
                                         </div>
                                     </div>
                                 </div><!-- /.box-body -->

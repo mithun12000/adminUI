@@ -22,6 +22,6 @@ class AdminUiThemeAsset extends AssetBundle
         'css/bootstrap-theme.css',
     ];
     public $depends = [
-        'yii\bootstrap\BootstrapAsset',
+        'yii\adminUi\assetsBundle\AdminUiAsset',
     ];
 }

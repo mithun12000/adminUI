@@ -19,10 +19,10 @@ class AdminUiPluginAsset extends AssetBundle
 {
     public $sourcePath = '@vendor/adminUi/assets/';
     public $js = [
-        'js/bootstrap.js',
+        'js/bootstrap.min.js',
     ];
     public $depends = [
         'yii\web\JqueryAsset',
-        'yii\bootstrap\BootstrapAsset',
+        'yii\adminUi\assetsBundle\AdminUiAsset',
     ];
 }

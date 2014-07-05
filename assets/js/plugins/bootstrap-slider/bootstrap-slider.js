@@ -386,3 +386,8 @@
 	$.fn.slider.Constructor = Slider;
 
 }( window.jQuery );
+
+$(function() {
+	/* BOOTSTRAP SLIDER */
+	$('.slider').slider();
+});
