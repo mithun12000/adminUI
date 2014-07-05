@@ -1,4 +1,6 @@
 <?php
+use yii\adminUi\widget\ButtonDropdown,
+    yii\adminUi\widget\ButtonGroup;
 $this->title = 'Buttons';
 $this->params['breadcrumbs'][] = ['label' => 'Ui', 'url' => ['#']];
 $this->params['breadcrumbs'][] = $this->title;
@@ -223,41 +225,134 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <!-- warning -->
                                         <tr>
                                             <td>
-                                                <div class="btn-group">
-                                                    <button type="button" class="btn btn-warning">Left</button>
-                                                    <button type="button" class="btn btn-warning">Middle</button>
-                                                    <button type="button" class="btn btn-warning">Right</button>
-                                                </div>
+                                                <?=ButtonGroup::widget([                                                    
+                                                     'buttons' => [
+                                                         [
+                                                             'label' => 'Left',
+                                                             'options' => [
+                                                                 'class' => 'btn-warning',
+                                                             ],
+                                                             
+                                                         ],
+                                                         [
+                                                             'label' => 'Middle',
+                                                             'options' => [
+                                                                 'class' => 'btn-warning',
+                                                             ],
+                                                         ],
+                                                         [
+                                                             'label' => 'Right',
+                                                             'options' => [
+                                                                 'class' => 'btn-warning',
+                                                             ],
+                                                          ],
+                                                     ]
+                                                 ])?>
                                             </td>
                                             <td>
-                                                <div class="btn-group">
-                                                    <button type="button" class="btn btn-warning"><i class='fa fa-align-left'></i></button>
-                                                    <button type="button" class="btn btn-warning"><i class='fa fa-align-center'></i></button>
-                                                    <button type="button" class="btn btn-warning"><i class='fa fa-align-right'></i></button>
-                                                </div>
+                                                <?=ButtonGroup::widget([
+                                                    'encodeLabels' => false,
+                                                     'buttons' => [
+                                                         [
+                                                             'label' => "<i class='fa fa-align-left'></i>",
+                                                             'options' => [
+                                                                 'class' => 'btn-warning',
+                                                             ],
+                                                             
+                                                         ],
+                                                         [
+                                                             'label' => "<i class='fa fa-align-center'></i>",
+                                                             'options' => [
+                                                                 'class' => 'btn-warning',
+                                                             ],
+                                                         ],
+                                                         [
+                                                             'label' => "<i class='fa fa-align-right'></i>",
+                                                             'options' => [
+                                                                 'class' => 'btn-warning',
+                                                             ],
+                                                          ],
+                                                     ]
+                                                 ])?>
                                             </td>
                                             <td>
-                                                <div class="btn-group">
-                                                    <button type="button" class="btn btn-warning btn-flat"><i class='fa fa-align-left'></i></button>
-                                                    <button type="button" class="btn btn-warning btn-flat"><i class='fa fa-align-center'></i></button>
-                                                    <button type="button" class="btn btn-warning btn-flat"><i class='fa fa-align-right'></i></button>
-                                                </div>
+                                                <?=ButtonGroup::widget([
+                                                    'encodeLabels' => false,
+                                                     'buttons' => [
+                                                         [
+                                                             'label' => "<i class='fa fa-align-left'></i>",
+                                                             'options' => [
+                                                                 'class' => 'btn-warning btn-flat',
+                                                             ],
+                                                             
+                                                         ],
+                                                         [
+                                                             'label' => "<i class='fa fa-align-center'></i>",
+                                                             'options' => [
+                                                                 'class' => 'btn-warning btn-flat',
+                                                             ],
+                                                         ],
+                                                         [
+                                                             'label' => "<i class='fa fa-align-right'></i>",
+                                                             'options' => [
+                                                                 'class' => 'btn-warning btn-flat',
+                                                             ],
+                                                          ],
+                                                     ]
+                                                 ])?>
                                             </td>
                                             <td>
-                                                <div class="btn-group">
-                                                    <button type="button" class="btn btn-warning">1</button>
-                                                    <button type="button" class="btn btn-warning">2</button>
-
-                                                    <div class="btn-group">
-                                                        <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
-                                                            <span class="caret"></span>
-                                                        </button>
-                                                        <ul class="dropdown-menu">
-                                                            <li><a href="#">Dropdown link</a></li>
-                                                            <li><a href="#">Dropdown link</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
+                                                <?=ButtonGroup::widget([
+                                                    'encodeLabels' => false,
+                                                     'buttons' => [
+                                                         [
+                                                             'label' => "1",
+                                                             'options' => [
+                                                                 'class' => 'btn-warning',
+                                                             ],
+                                                             
+                                                         ],
+                                                         [
+                                                             'label' => "2",
+                                                             'options' => [
+                                                                 'class' => 'btn-warning',
+                                                             ],
+                                                         ],
+                                                         [
+                                                             'dropdown' => [
+                                                            'label' => '',
+                                                                 'group' => true,
+                                                            'options' => [
+                                                                'type' => 'button',
+                                                                'class' => 'btn-warning'
+                                                            ],
+                                                            'dropdown' => [
+                                                                'items' => [
+                                                                    [
+                                                                        'label' => 'Action',
+                                                                        'url'   => '#'
+                                                                    ],
+                                                                    [
+                                                                        'label' => 'Another action',
+                                                                        'url'   => '#'
+                                                                    ],
+                                                                    [
+                                                                        'label' => 'Something else here',
+                                                                        'url'   => '#'
+                                                                    ],
+                                                                    [
+                                                                        'divider' => true,
+                                                                    ],
+                                                                    [
+                                                                        'label' => 'Separated link',
+                                                                        'url'   => '#'
+                                                                    ],
+                                                                ],
+                                                               ],
+                                                            ],
+                                                          ],
+                                                     ]
+                                                 ])?>                                                
                                             </td>
                                         </tr>  <!-- /.warning -->
                                         <!-- success -->
@@ -348,150 +443,318 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <!-- Split button -->
                                     <p>Normal slplit buttons:</p>
                                     <div class="margin">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-default">Action</button>
-                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                                <span class="caret"></span>
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                            </button>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Action</a></li>
-                                                <li><a href="#">Another action</a></li>
-                                                <li><a href="#">Something else here</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">Separated link</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-info">Action</button>
-                                            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-                                                <span class="caret"></span>
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                            </button>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Action</a></li>
-                                                <li><a href="#">Another action</a></li>
-                                                <li><a href="#">Something else here</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">Separated link</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-danger">Action</button>
-                                            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-                                                <span class="caret"></span>
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                            </button>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Action</a></li>
-                                                <li><a href="#">Another action</a></li>
-                                                <li><a href="#">Something else here</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">Separated link</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-success">Action</button>
-                                            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-                                                <span class="caret"></span>
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                            </button>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Action</a></li>
-                                                <li><a href="#">Another action</a></li>
-                                                <li><a href="#">Something else here</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">Separated link</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-warning">Action</button>
-                                            <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
-                                                <span class="caret"></span>
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                            </button>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Action</a></li>
-                                                <li><a href="#">Another action</a></li>
-                                                <li><a href="#">Something else here</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">Separated link</a></li>
-                                            </ul>
-                                        </div>
+                                            <?=ButtonDropdown::widget([
+                                                'label' => 'Action',
+                                                'split' => true,
+                                                'options' => [
+                                                    'class' => 'btn-default'
+                                                ],
+                                                'dropdown' => [
+                                                'items' => [
+                                                    [
+                                                        'label' => 'Action',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'label' => 'Another action',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'label' => 'Something else here',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'divider' => true,
+                                                    ],
+                                                    [
+                                                        'label' => 'Separated link',
+                                                        'url'   => '#'
+                                                    ],
+                                                ],
+                                               ],
+                                            ])?>
+                                            
+                                            <?=ButtonDropdown::widget([
+                                                'label' => 'Action',
+                                                'split' => true,
+                                                'options' => [
+                                                    'class' => 'btn-info'
+                                                ],
+                                                'dropdown' => [
+                                                'items' => [
+                                                    [
+                                                        'label' => 'Action',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'label' => 'Another action',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'label' => 'Something else here',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'divider' => true,
+                                                    ],
+                                                    [
+                                                        'label' => 'Separated link',
+                                                        'url'   => '#'
+                                                    ],
+                                                ],
+                                               ],
+                                            ])?>
+                                        
+                                        <?=ButtonDropdown::widget([
+                                                'label' => 'Action',
+                                                'split' => true,
+                                                'options' => [
+                                                    'class' => 'btn-danger'
+                                                ],
+                                                'dropdown' => [
+                                                'items' => [
+                                                    [
+                                                        'label' => 'Action',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'label' => 'Another action',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'label' => 'Something else here',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'divider' => true,
+                                                    ],
+                                                    [
+                                                        'label' => 'Separated link',
+                                                        'url'   => '#'
+                                                    ],
+                                                ],
+                                               ],
+                                            ])?>
+                                        
+                                        <?=ButtonDropdown::widget([
+                                                'label' => 'Action',
+                                                'split' => true,
+                                                'options' => [
+                                                    'class' => 'btn-success'
+                                                ],
+                                                'dropdown' => [
+                                                'items' => [
+                                                    [
+                                                        'label' => 'Action',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'label' => 'Another action',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'label' => 'Something else here',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'divider' => true,
+                                                    ],
+                                                    [
+                                                        'label' => 'Separated link',
+                                                        'url'   => '#'
+                                                    ],
+                                                ],
+                                               ],
+                                            ])?>
+                                        
+                                        <?=ButtonDropdown::widget([
+                                                'label' => 'Action',
+                                                'split' => true,
+                                                'options' => [
+                                                    'class' => 'btn-warning'
+                                                ],
+                                                'dropdown' => [
+                                                'items' => [
+                                                    [
+                                                        'label' => 'Action',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'label' => 'Another action',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'label' => 'Something else here',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'divider' => true,
+                                                    ],
+                                                    [
+                                                        'label' => 'Separated link',
+                                                        'url'   => '#'
+                                                    ],
+                                                ],
+                                               ],
+                                            ])?>                                        
                                     </div>
                                     <!-- flat split buttons -->
                                     <p>Flat split buttons:</p>
                                     <div class="margin">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-default btn-flat">Action</button>
-                                            <button type="button" class="btn btn-default btn-flat dropdown-toggle" data-toggle="dropdown">
-                                                <span class="caret"></span>
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                            </button>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Action</a></li>
-                                                <li><a href="#">Another action</a></li>
-                                                <li><a href="#">Something else here</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">Separated link</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-info btn-flat">Action</button>
-                                            <button type="button" class="btn btn-info btn-flat dropdown-toggle" data-toggle="dropdown">
-                                                <span class="caret"></span>
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                            </button>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Action</a></li>
-                                                <li><a href="#">Another action</a></li>
-                                                <li><a href="#">Something else here</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">Separated link</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-danger btn-flat">Action</button>
-                                            <button type="button" class="btn btn-danger btn-flat dropdown-toggle" data-toggle="dropdown">
-                                                <span class="caret"></span>
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                            </button>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Action</a></li>
-                                                <li><a href="#">Another action</a></li>
-                                                <li><a href="#">Something else here</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">Separated link</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-success btn-flat">Action</button>
-                                            <button type="button" class="btn btn-success btn-flat dropdown-toggle" data-toggle="dropdown">
-                                                <span class="caret"></span>
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                            </button>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Action</a></li>
-                                                <li><a href="#">Another action</a></li>
-                                                <li><a href="#">Something else here</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">Separated link</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-warning btn-flat">Action</button>
-                                            <button type="button" class="btn btn-warning btn-flat dropdown-toggle" data-toggle="dropdown">
-                                                <span class="caret"></span>
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                            </button>
-                                            <ul class="dropdown-menu" role="menu">
-                                                <li><a href="#">Action</a></li>
-                                                <li><a href="#">Another action</a></li>
-                                                <li><a href="#">Something else here</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">Separated link</a></li>
-                                            </ul>
-                                        </div>
+                                        <?=ButtonDropdown::widget([
+                                                'label' => 'Action',
+                                                'split' => true,
+                                                'options' => [
+                                                    'class' => 'btn-default btn-flat'
+                                                ],
+                                                'dropdown' => [
+                                                'items' => [
+                                                    [
+                                                        'label' => 'Action',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'label' => 'Another action',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'label' => 'Something else here',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'divider' => true,
+                                                    ],
+                                                    [
+                                                        'label' => 'Separated link',
+                                                        'url'   => '#'
+                                                    ],
+                                                ],
+                                               ],
+                                            ])?>
+                                            
+                                            <?=ButtonDropdown::widget([
+                                                'label' => 'Action',
+                                                'split' => true,
+                                                'options' => [
+                                                    'class' => 'btn-info btn-flat'
+                                                ],
+                                                'dropdown' => [
+                                                'items' => [
+                                                    [
+                                                        'label' => 'Action',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'label' => 'Another action',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'label' => 'Something else here',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'divider' => true,
+                                                    ],
+                                                    [
+                                                        'label' => 'Separated link',
+                                                        'url'   => '#'
+                                                    ],
+                                                ],
+                                               ],
+                                            ])?>
+                                        
+                                        <?=ButtonDropdown::widget([
+                                                'label' => 'Action',
+                                                'split' => true,
+                                                'options' => [
+                                                    'class' => 'btn-danger btn-flat'
+                                                ],
+                                                'dropdown' => [
+                                                'items' => [
+                                                    [
+                                                        'label' => 'Action',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'label' => 'Another action',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'label' => 'Something else here',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'divider' => true,
+                                                    ],
+                                                    [
+                                                        'label' => 'Separated link',
+                                                        'url'   => '#'
+                                                    ],
+                                                ],
+                                               ],
+                                            ])?>
+                                        
+                                        <?=ButtonDropdown::widget([
+                                                'label' => 'Action',
+                                                'split' => true,
+                                                'options' => [
+                                                    'class' => 'btn-success btn-flat'
+                                                ],
+                                                'dropdown' => [
+                                                'items' => [
+                                                    [
+                                                        'label' => 'Action',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'label' => 'Another action',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'label' => 'Something else here',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'divider' => true,
+                                                    ],
+                                                    [
+                                                        'label' => 'Separated link',
+                                                        'url'   => '#'
+                                                    ],
+                                                ],
+                                               ],
+                                            ])?>
+                                        
+                                        <?=ButtonDropdown::widget([
+                                                'label' => 'Action',
+                                                'split' => true,
+                                                'options' => [
+                                                    'class' => 'btn-warning btn-flat'
+                                                ],
+                                                'dropdown' => [
+                                                'items' => [
+                                                    [
+                                                        'label' => 'Action',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'label' => 'Another action',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'label' => 'Something else here',
+                                                        'url'   => '#'
+                                                    ],
+                                                    [
+                                                        'divider' => true,
+                                                    ],
+                                                    [
+                                                        'label' => 'Separated link',
+                                                        'url'   => '#'
+                                                    ],
+                                                ],
+                                               ],
+                                            ])?>
                                     </div>
                                 </div><!-- /.box-body -->
                             </div><!-- end split buttons box -->
@@ -776,50 +1039,147 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <!-- warning -->
                                         <tr>
                                             <td>
-                                                <div class="btn-group-vertical">
-                                                    <button type="button" class="btn btn-warning">Top</button>
-                                                    <button type="button" class="btn btn-warning">Middle</button>
-                                                    <button type="button" class="btn btn-warning">Bottom</button>
-                                                </div>
+                                                <?=ButtonGroup::widget([    
+                                                    'orientation' => ButtonGroup::VERTICLE,
+                                                     'buttons' => [
+                                                         [
+                                                             'label' => 'Left',
+                                                             'options' => [
+                                                                 'class' => 'btn-warning',
+                                                             ],
+                                                             
+                                                         ],
+                                                         [
+                                                             'label' => 'Middle',
+                                                             'options' => [
+                                                                 'class' => 'btn-warning',
+                                                             ],
+                                                         ],
+                                                         [
+                                                             'label' => 'Right',
+                                                             'options' => [
+                                                                 'class' => 'btn-warning',
+                                                             ],
+                                                          ],
+                                                     ]
+                                                 ])?>
                                             </td>
                                             <td>
-                                                <div class="btn-group-vertical">
-                                                    <button type="button" class="btn btn-warning"><i class='fa fa-align-left'></i></button>
-                                                    <button type="button" class="btn btn-warning"><i class='fa fa-align-center'></i></button>
-                                                    <button type="button" class="btn btn-warning"><i class='fa fa-align-right'></i></button>
-                                                </div>
+                                                <?=ButtonGroup::widget([
+                                                    'orientation' => ButtonGroup::VERTICLE,
+                                                    'encodeLabels' => false,
+                                                     'buttons' => [
+                                                         [
+                                                             'label' => "<i class='fa fa-align-left'></i>",
+                                                             'options' => [
+                                                                 'class' => 'btn-warning',
+                                                             ],
+                                                             
+                                                         ],
+                                                         [
+                                                             'label' => "<i class='fa fa-align-center'></i>",
+                                                             'options' => [
+                                                                 'class' => 'btn-warning',
+                                                             ],
+                                                         ],
+                                                         [
+                                                             'label' => "<i class='fa fa-align-right'></i>",
+                                                             'options' => [
+                                                                 'class' => 'btn-warning',
+                                                             ],
+                                                          ],
+                                                     ]
+                                                 ])?>
                                             </td>
                                             <td>
-                                                <div class="btn-group-vertical">
-                                                    <button type="button" class="btn btn-warning btn-flat"><i class='fa fa-align-left'></i></button>
-                                                    <button type="button" class="btn btn-warning btn-flat"><i class='fa fa-align-center'></i></button>
-                                                    <button type="button" class="btn btn-warning btn-flat"><i class='fa fa-align-right'></i></button>
-                                                </div>
+                                                <?=ButtonGroup::widget([
+                                                    'orientation' => ButtonGroup::VERTICLE,
+                                                    'encodeLabels' => false,
+                                                     'buttons' => [
+                                                         [
+                                                             'label' => "<i class='fa fa-align-left'></i>",
+                                                             'options' => [
+                                                                 'class' => 'btn-warning btn-flat',
+                                                             ],
+                                                             
+                                                         ],
+                                                         [
+                                                             'label' => "<i class='fa fa-align-center'></i>",
+                                                             'options' => [
+                                                                 'class' => 'btn-warning btn-flat',
+                                                             ],
+                                                         ],
+                                                         [
+                                                             'label' => "<i class='fa fa-align-right'></i>",
+                                                             'options' => [
+                                                                 'class' => 'btn-warning btn-flat',
+                                                             ],
+                                                          ],
+                                                     ]
+                                                 ])?>
                                             </td>
                                             <td>
-                                                <div class="btn-group-vertical">
-                                                    <button type="button" class="btn btn-warning">1</button>
-                                                    <button type="button" class="btn btn-warning">2</button>
-
-                                                    <div class="btn-group">
-                                                        <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
-                                                            <span class="caret"></span>
-                                                        </button>
-                                                        <ul class="dropdown-menu">
-                                                            <li><a href="#">Dropdown link</a></li>
-                                                            <li><a href="#">Dropdown link</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
+                                                <?=ButtonGroup::widget([
+                                                    'orientation' => ButtonGroup::VERTICLE,
+                                                    'encodeLabels' => false,
+                                                     'buttons' => [
+                                                         [
+                                                             'label' => "1",
+                                                             'options' => [
+                                                                 'class' => 'btn-warning',
+                                                             ],
+                                                             
+                                                         ],
+                                                         [
+                                                             'label' => "2",
+                                                             'options' => [
+                                                                 'class' => 'btn-warning',
+                                                             ],
+                                                         ],
+                                                         [
+                                                             'dropdown' => [
+                                                            'label' => '',
+                                                                 'group' => true,
+                                                            'options' => [
+                                                                'type' => 'button',
+                                                                'class' => 'btn-warning'
+                                                            ],
+                                                            'dropdown' => [
+                                                                'items' => [
+                                                                    [
+                                                                        'label' => 'Action',
+                                                                        'url'   => '#'
+                                                                    ],
+                                                                    [
+                                                                        'label' => 'Another action',
+                                                                        'url'   => '#'
+                                                                    ],
+                                                                    [
+                                                                        'label' => 'Something else here',
+                                                                        'url'   => '#'
+                                                                    ],
+                                                                    [
+                                                                        'divider' => true,
+                                                                    ],
+                                                                    [
+                                                                        'label' => 'Separated link',
+                                                                        'url'   => '#'
+                                                                    ],
+                                                                ],
+                                                               ],
+                                                            ],
+                                                          ],
+                                                     ]
+                                                 ])?>                                                
                                             </td>
-                                        </tr>  <!-- /.warning -->
+                                        </tr>  <!-- /.warning -->                                        
                                         <!-- success -->
                                         <tr>
                                             <td>
                                                 <div class="btn-group-vertical">
                                                     <button type="button" class="btn btn-success">Top</button>
                                                     <button type="button" class="btn btn-success">Middle</button>
-                                                    <button type="button" class="btn btn-success">Bottom</button>
+                                                    <button type="button" class="btn btn-success">Bottom</button>                                                    
                                                 </div>
                                             </td>
                                             <td>

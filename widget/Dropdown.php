@@ -23,7 +23,7 @@ class Dropdown extends Widget
     const NAV = 1;
     const DROPDOWN = 2;
     
-    const DEFAULTTYEP = self::NAV;
+    const DEFAULTTYEP = self::DROPDOWN;
 
     /**
      * @var array list of menu items in the dropdown. Each array element can be either an HTML string,
@@ -45,9 +45,11 @@ class Dropdown extends Widget
      */
     public $encodeLabels = true;
     
+    /**
+     * @var string|constant droupdown type.
+     */
     public $type;
-
-
+    
     /**
      * Initializes the widget.
      * If you override this method, make sure you call the parent implementation first.
@@ -59,7 +61,7 @@ class Dropdown extends Widget
             $class = ($this->type == self::DROPDOWN) ? 'dropdown-menu' : 'treeview-menu';
             Html::addCssClass($this->options,$class);
         }else{
-            Html::addCssClass($this->options, 'treeview-menu');   
+            Html::addCssClass($this->options, 'dropdown-menu');   
         }
     }
 
@@ -90,11 +92,19 @@ class Dropdown extends Widget
                 $lines[] = $item;
                 continue;
             }
+            
+            $options = ArrayHelper::getValue($item, 'options', []);
+            
+            if(isset($item['divider'])){      
+                Html::addCssClass($options, 'divider');
+                $lines[] = Html::tag('li','', $options);
+                continue;
+            }
+            
             if (!isset($item['label'])) {
                 throw new InvalidConfigException("The 'label' option is required.");
             }
-            $label = $this->encodeLabels ? Html::encode($item['label']) : $item['label'];
-            $options = ArrayHelper::getValue($item, 'options', []);
+            $label = $this->encodeLabels ? Html::encode($item['label']) : $item['label'];            
             $linkOptions = ArrayHelper::getValue($item, 'linkOptions', []);
             $linkOptions['tabindex'] = '-1';
             

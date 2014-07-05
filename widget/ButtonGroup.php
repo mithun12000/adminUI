@@ -6,7 +6,7 @@
  */
 
 namespace yii\adminUi\widget;
-
+use yii\adminUi\assetsBundle\AdminUiAsset;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
@@ -39,6 +39,15 @@ use yii\helpers\Html;
  */
 class ButtonGroup extends Widget
 {
+    const HORIZONTAL = 1;
+    const VERTICLE = 2;
+    
+    const DEFAULT_ORIENTATION = 1;
+        
+    /**
+     * @var string the button label.
+     */
+    public $orientation = self::DEFAULT_ORIENTATION;
     /**
      * @var array list of buttons. Each array element represents a single button
      * which can be specified as a string or an array of the following structure:
@@ -59,7 +68,11 @@ class ButtonGroup extends Widget
     public function init()
     {
         parent::init();
-        Html::addCssClass($this->options, 'btn-group');
+        if($this->orientation == self::VERTICLE){
+            Html::addCssClass($this->options, 'btn-group-vertical');
+        }else{
+            Html::addCssClass($this->options, 'btn-group');
+        }        
     }
 
     /**
@@ -68,7 +81,7 @@ class ButtonGroup extends Widget
     public function run()
     {
         echo Html::tag('div', $this->renderButtons(), $this->options);
-        BootstrapAsset::register($this->getView());
+        AdminUiAsset::register($this->getView());
     }
 
     /**
@@ -80,14 +93,21 @@ class ButtonGroup extends Widget
         $buttons = [];
         foreach ($this->buttons as $button) {
             if (is_array($button)) {
-                $label = ArrayHelper::getValue($button, 'label');
-                $options = ArrayHelper::getValue($button, 'options');
-                $buttons[] = Button::widget([
-                    'label' => $label,
-                    'options' => $options,
-                    'encodeLabel' => $this->encodeLabels,
-                    'view' => $this->getView()
-                ]);
+                if(isset($button['dropdown'])){
+                    $option = array_merge($button['dropdown'], [
+                        'view' => $this->getView()
+                    ]);
+                    $buttons[] = ButtonDropdown::widget($option);
+                }else{
+                    $label = ArrayHelper::getValue($button, 'label');
+                    $options = ArrayHelper::getValue($button, 'options');
+                    $buttons[] = Button::widget([
+                        'label' => $label,
+                        'options' => $options,
+                        'encodeLabel' => $this->encodeLabels,
+                        'view' => $this->getView()
+                    ]);
+                }
             } else {
                 $buttons[] = $button;
             }

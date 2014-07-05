@@ -50,6 +50,12 @@ class ButtonDropdown extends Widget
      * @var boolean whether to display a group of split-styled button group.
      */
     public $split = false;
+    
+    /**
+     * @var boolean whether to display a group of split-styled button group.
+     */
+    public $group = false;
+    
     /**
      * @var string the tag to use to render the button
      */
@@ -64,8 +70,18 @@ class ButtonDropdown extends Widget
      */
     public function run()
     {
-        echo $this->renderButton() . "\n" . $this->renderDropdown();
+        if ($this->split) {
+            echo $this->renderGroup($this->renderButton() . "\n" . $this->renderDropdown());
+        }else if($this->group){
+            echo $this->renderGroup($this->renderButton() . "\n" . $this->renderDropdown());
+        }else{
+            echo $this->renderButton() . "\n" . $this->renderDropdown();
+        }
         $this->registerPlugin('button');
+    }
+    
+    protected function renderGroup($content) {
+        echo Html::tag('div', $content, ['class' =>'btn-group']);
     }
 
     /**
