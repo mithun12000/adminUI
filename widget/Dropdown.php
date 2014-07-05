@@ -48,7 +48,7 @@ class Dropdown extends Widget
     public function init()
     {
         parent::init();
-        Html::addCssClass($this->options, 'treeview-menu');
+        Html::addCssClass($this->options, 'dropdown-menu');
     }
 
     /**

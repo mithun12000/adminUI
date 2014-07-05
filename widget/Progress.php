@@ -10,6 +10,7 @@ namespace yii\adminUi\widget;
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\adminUi\assetsBundle\AdminUiAsset;
 
 /**
  * Progress renders a bootstrap progress bar component.
@@ -59,6 +60,16 @@ use yii\helpers\Html;
  */
 class Progress extends Widget
 {
+    const HORIZONTAL = 1;
+    const VERTICLE = 2;
+    
+    const DEFAULT_ORIENTATION = 1;
+        
+    /**
+     * @var string the button label.
+     */
+    public $orientation = self::DEFAULT_ORIENTATION;
+
     /**
      * @var string the button label.
      */
@@ -97,6 +108,9 @@ class Progress extends Widget
     {
         parent::init();
         Html::addCssClass($this->options, 'progress');
+        if($this->orientation == self::VERTICLE){
+            Html::addCssClass($this->options, 'vertical');
+        }
     }
 
     /**
@@ -107,7 +121,7 @@ class Progress extends Widget
         echo Html::beginTag('div', $this->options) . "\n";
         echo $this->renderProgress() . "\n";
         echo Html::endTag('div') . "\n";
-        BootstrapAsset::register($this->getView());
+        AdminUiAsset::register($this->getView());
     }
 
     /**
@@ -147,8 +161,9 @@ class Progress extends Widget
             'aria-valuenow' => $percent,
             'aria-valuemin' => 0,
             'aria-valuemax' => 100,
-            'style' => "width:{$percent}%",
+            'style' => ($this->orientation == self::HORIZONTAL)? "width:{$percent}%" : "height:{$percent}%",
         ];
+            
         $options = array_merge($defaultOptions, $options);
         Html::addCssClass($options, 'progress-bar');
 

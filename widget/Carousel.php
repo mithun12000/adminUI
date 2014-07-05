@@ -43,7 +43,7 @@ class Carousel extends Widget
      * @var array|boolean the labels for the previous and the next control buttons.
      * If false, it means the previous and the next control buttons should not be displayed.
      */
-    public $controls = ['&lsaquo;', '&rsaquo;'];
+    public $controls = ['<span class="glyphicon glyphicon-chevron-left"></span>', '<span class="glyphicon glyphicon-chevron-right"></span>'];
     /**
      * @var array list of slides in the carousel. Each array element represents a single
      * slide with the following structure:

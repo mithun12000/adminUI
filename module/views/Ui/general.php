@@ -1,383 +1,550 @@
 <?php
+use yii\adminUi\widget\PageHeader,
+ yii\adminUi\widget\Alert,
+ yii\adminUi\widget\Box,
+ yii\adminUi\widget\Row,
+ yii\adminUi\widget\Tabs,
+ yii\adminUi\widget\Callout,
+ yii\adminUi\widget\Carousel,
+ yii\adminUi\widget\Collapse,
+ yii\adminUi\widget\Progress,
+ yii\adminUi\widget\Column;
+
 $this->title = 'General UI';
 $this->params['breadcrumbs'][] = ['label' => 'Ui', 'url' => ['#']];
 $this->params['breadcrumbs'][] = $this->title;
 $this->params['pagelabel'] = 'Preview of UI elements';
+
+PageHeader::begin();
+echo 'Alerts and Callouts';
+PageHeader::end();
+
+Row::begin();
+    Column::begin([
+        'grid' => [
+            [
+                'type' => Column::TYPE_DESKTOP,
+                'size' => Column::SIZE_HALF,
+            ]
+        ]
+    ]);
+    Box::begin([
+        'type'  => Box::TYPE_DANGER,
+        'header'=> 'Alerts',
+        'headerIcon' => 'fa fa-warning',
+    ]);
+    Alert::begin([
+        'options' => [
+            'class' => 'alert-danger alert-dismissable',
+        ],
+        'icon' => 'fa fa-ban',
+        'closeButton' => [],
+    ]);
+    echo '<b>Alert!</b> Danger alert preview. This alert is dismissable. A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.';
+    Alert::end();
+    
+    Alert::begin([
+        'options' => [
+            'class' => 'alert-info alert-dismissable',
+        ],
+        'icon' => 'fa fa-info',
+        'closeButton' => [],
+    ]);
+    echo '<b>Alert!</b> Info alert preview. This alert is dismissable.';
+    Alert::end();
+    
+    Alert::begin([
+        'options' => [
+            'class' => 'alert-warning alert-dismissable',
+        ],
+        'icon' => 'fa fa-warning',
+        'closeButton' => [],
+    ]);
+    echo '<b>Alert!</b> Warning alert preview. This alert is dismissable.';
+    Alert::end();
+    
+    Alert::begin([
+        'options' => [
+            'class' => 'alert-success alert-dismissable',
+        ],
+        'icon' => 'fa fa-check',
+        'closeButton' => [],
+    ]);
+    echo '<b>Alert!</b> Success alert preview. This alert is dismissable.';
+    Alert::end();
+    
+    
+    Box::end();
+    Column::end();
+    
+    Column::begin([
+        'grid' => [
+            [
+                'type' => Column::TYPE_DESKTOP,
+                'size' => Column::SIZE_HALF,
+            ]
+        ]
+    ]);    
+    Box::begin([
+        'type'  => Box::TYPE_INFO,
+        'header'=> 'Callouts',
+        'headerIcon' => 'fa fa-bullhorn',
+    ]);
+    Callout::begin(['options' =>[
+                        'class' => 'callout-danger',
+                        ],
+                     'header' => 'I am a danger callout!',
+                    ]);
+    echo '<p>There is a problem that we need to fix. A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>';
+    Callout::end();
+    
+    Callout::begin(['options' =>[
+                        'class' => 'callout-info',
+                        ],
+                     'header' => 'I am an info callout!',
+                    ]);
+    echo '<p>Follow the steps to continue to payment.</p>';
+    Callout::end();
+    
+    Callout::begin(['options' =>[
+                        'class' => 'callout-warning',
+                        ],
+                     'header' => 'I am a warning callout!',
+                    ]);
+    echo '<p>This is a yellow callout.</p>';
+    Callout::end();
+    
+    
+    Box::end();
+    Column::end();
+Row::end();
+
+PageHeader::begin();
+echo 'AdminLTE Custom Tabs';
+PageHeader::end();
+
+Row::begin();
+    Column::begin([
+        'grid' => [
+            [
+                'type' => Column::TYPE_DESKTOP,
+                'size' => Column::SIZE_HALF,
+            ]
+        ]
+    ]);
+    echo Tabs::widget([
+        'encodeLabels' => false,
+        'options' => [
+            //'class' => 'nav-tabs-custom',
+        ],
+      'items' => [
+          [
+              'label' => 'One',
+              'content' => '<b>How to use:</b>
+                                        <p>Exactly like the original bootstrap tabs except you should use
+                                            the custom wrapper <code>.nav-tabs-custom</code> to achieve this style.</p>
+                                        A wonderful serenity has taken possession of my entire soul,
+                                        like these sweet mornings of spring which I enjoy with my whole heart.
+                                        I am alone, and feel the charm of existence in this spot,
+                                        which was created for the bliss of souls like mine. I am so happy,
+                                        my dear friend, so absorbed in the exquisite sense of mere tranquil existence,
+                                        that I neglect my talents. I should be incapable of drawing a single stroke
+                                        at the present moment; and yet I feel that I never was a greater artist than now.',
+              'active' => true
+          ],
+          [
+              'label' => 'Two',
+              'content' => 'The European languages are members of the same family. Their separate existence is a myth.
+                                        For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
+                                        in their grammar, their pronunciation and their most common words. Everyone realizes why a
+                                        new common language would be desirable: one could refuse to pay expensive translators. To
+                                        achieve this, it would be necessary to have uniform grammar, pronunciation and more common
+                                        words. If several languages coalesce, the grammar of the resulting language is more simple
+                                        and regular than that of the individual languages.',
+              'headerOptions' => [],
+              'options' => ['id' => 'myveryownID'],
+          ],
+          [
+              'label' => 'Dropdown',
+              'items' => [
+                   [
+                       'label' => 'DropdownA',
+                       'content' => 'DropdownA, Anim pariatur cliche...',
+                   ],
+                   [
+                       'label' => 'DropdownB',
+                       'content' => 'DropdownB, Anim pariatur cliche...',
+                   ],
+              ],
+          ],
+          [
+              'label' => '<i class="fa fa-gear"></i>',
+              'headerOptions' => ['class' => 'pull-right'],
+              'linkOptions' => ['class' => 'text-muted'],
+              'nocontent' => true,              
+          ]
+      ],
+  ]);
+    Column::end();
+    
+    Column::begin([
+        'grid' => [
+            [
+                'type' => Column::TYPE_DESKTOP,
+                'size' => Column::SIZE_HALF,
+            ]
+        ]
+    ]);    
+    echo Tabs::widget([
+        'encodeLabels' => false,
+        'options' => [
+            'class' => 'pull-right',
+        ],
+      'items' => [
+          [
+              'label' => 'One',
+              'content' => '<b>How to use:</b>
+                                        <p>Exactly like the original bootstrap tabs except you should use
+                                            the custom wrapper <code>.nav-tabs-custom</code> to achieve this style.</p>
+                                        A wonderful serenity has taken possession of my entire soul,
+                                        like these sweet mornings of spring which I enjoy with my whole heart.
+                                        I am alone, and feel the charm of existence in this spot,
+                                        which was created for the bliss of souls like mine. I am so happy,
+                                        my dear friend, so absorbed in the exquisite sense of mere tranquil existence,
+                                        that I neglect my talents. I should be incapable of drawing a single stroke
+                                        at the present moment; and yet I feel that I never was a greater artist than now.',
+              'active' => true
+          ],
+          [
+              'label' => 'Two',
+              'content' => 'The European languages are members of the same family. Their separate existence is a myth.
+                                        For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
+                                        in their grammar, their pronunciation and their most common words. Everyone realizes why a
+                                        new common language would be desirable: one could refuse to pay expensive translators. To
+                                        achieve this, it would be necessary to have uniform grammar, pronunciation and more common
+                                        words. If several languages coalesce, the grammar of the resulting language is more simple
+                                        and regular than that of the individual languages.',
+              'headerOptions' => [],
+              'options' => ['id' => 'myveryownID'],
+          ],
+          [
+              'label' => 'Dropdown',
+              'items' => [
+                   [
+                       'label' => 'DropdownA',
+                       'content' => 'DropdownA, Anim pariatur cliche...',
+                   ],
+                   [
+                       'label' => 'DropdownB',
+                       'content' => 'DropdownB, Anim pariatur cliche...',
+                   ],
+              ],
+          ],
+          [
+              'label' => '<i class="fa fa-th"></i> Custom Tabs',
+              'headerOptions' => ['class' => 'pull-left header'],
+              'linkOptions' => ['class' => 'text-muted'],
+              'nocontent' => true,
+              'header' => true,
+          ]
+      ],
+  ]);
+    Column::end();
+Row::end();
+
+PageHeader::begin();
+echo 'Progress Bars';
+PageHeader::end();
+
+Row::begin();
+    Column::begin([
+        'grid' => [
+            [
+                'type' => Column::TYPE_DESKTOP,
+                'size' => Column::SIZE_HALF,
+            ]
+        ]
+    ]);
+    
+    Box::begin([
+        'type'  => Box::TYPE_SOLID,
+        'header'=> 'Progress Bars Different Sizes',
+    ]);
+    
+    echo 'No Class';
+    echo Progress::widget([
+        'options' => [
+            'class' => 'progress-striped',            
+        ],
+        'barOptions' => [
+            'class' => 'progress-bar-primary'
+        ],
+      'percent' => 40,
+  ]);
+    echo 'Class: <code>.sm</code>';
+    echo Progress::widget([
+        'options' => [
+            'class' => 'sm progress-striped',            
+        ],
+        'barOptions' => [
+            'class' => 'progress-bar-success'
+        ],
+      'percent' => 20,
+  ]);
+    
+    echo 'Class: <code>.xs</code>';
+    echo Progress::widget([
+        'options' => [
+            'class' => 'xs progress-striped active',            
+        ],
+        'barOptions' => [
+            'class' => 'progress-bar-warning'
+        ],
+      'percent' => 60,
+  ]);
+    
+    Box::end();
+    
+    Column::end();
+    
+    Column::begin([
+        'grid' => [
+            [
+                'type' => Column::TYPE_DESKTOP,
+                'size' => Column::SIZE_HALF,
+            ]
+        ]
+    ]);    
+    Box::begin([
+        'type'  => Box::TYPE_SOLID,
+        'header'=> 'Progress bars',
+    ]);
+    
+    
+    echo Progress::widget([        
+        'barOptions' => [
+            'class' => 'progress-bar-green'
+        ],
+      'percent' => 40,
+  ]);
+    
+    echo Progress::widget([        
+        'barOptions' => [
+            'class' => 'progress-bar-aqua'
+        ],
+      'percent' => 20,
+  ]);   
+    
+    echo Progress::widget([
+        
+        'barOptions' => [
+            'class' => 'progress-bar-yellow'
+        ],
+      'percent' => 60,
+  ]);
+    
+    echo Progress::widget([        
+        'barOptions' => [
+            'class' => 'progress-bar-red'
+        ],
+      'percent' => 80,
+  ]);    
+    Box::end();
+    Column::end();
+Row::end();
+Row::begin();
+    Column::begin([
+        'grid' => [
+            [
+                'type' => Column::TYPE_DESKTOP,
+                'size' => Column::SIZE_HALF,
+            ]
+        ]
+    ]);
+    
+    Box::begin([
+        'type'  => Box::TYPE_SOLID,
+        'header'=> 'Vertical Progress Bars Different Sizes',
+        'bodytoption' =>[
+            'class' => 'text-center'
+        ],
+    ]);    
+    echo '<p>By adding the class <code>.vertical</code> and <code>.xs</code> or <code>.sm</code> we achieve:</p>';
+    echo Progress::widget([
+        'options' => [
+            'class' => 'progress-striped',            
+        ],
+        'orientation' => Progress::VERTICLE,
+        'barOptions' => [
+            'class' => 'progress-bar-primary'
+        ],
+      'percent' => 40,
+        
+  ]);
+    
+    echo Progress::widget([
+        'options' => [
+            'class' => 'sm progress-striped',
+        ],
+        'orientation' => Progress::VERTICLE,
+        'barOptions' => [
+            'class' => 'progress-bar-success'
+        ],
+      'percent' => 20,
+  ]);
+    
+    
+    echo Progress::widget([
+        'options' => [
+            'class' => 'xs progress-striped active',
+        ],
+        'orientation' => Progress::VERTICLE,
+        'barOptions' => [
+            'class' => 'progress-bar-warning'
+        ],
+      'percent' => 60,
+  ]);
+    
+    Box::end();
+    
+    Column::end();
+    
+    Column::begin([
+        'grid' => [
+            [
+                'type' => Column::TYPE_DESKTOP,
+                'size' => Column::SIZE_HALF,
+            ]
+        ]
+    ]);    
+    Box::begin([
+        'type'  => Box::TYPE_SOLID,
+        'header'=> 'Progress bars',
+        'bodytoption' =>[
+            'class' => 'text-center'
+        ],
+    ]);
+    
+    echo '<p>By adding the class <code>.vertical</code> we achieve:</p>';
+    
+    echo Progress::widget([        
+        'orientation' => Progress::VERTICLE,
+        'barOptions' => [
+            'class' => 'progress-bar-green'
+        ],
+      'percent' => 40,
+  ]);
+    
+    echo Progress::widget([        
+        'orientation' => Progress::VERTICLE,
+        'barOptions' => [
+            'class' => 'progress-bar-aqua'
+        ],
+      'percent' => 20,
+  ]);   
+    
+    echo Progress::widget([
+        'orientation' => Progress::VERTICLE,
+        'barOptions' => [
+            'class' => 'progress-bar-yellow'
+        ],
+      'percent' => 60,
+  ]);
+    
+    echo Progress::widget([        
+        'orientation' => Progress::VERTICLE,
+        'barOptions' => [
+            'class' => 'progress-bar-red'
+        ],
+      'percent' => 80,
+  ]);    
+    Box::end();
+    Column::end();
+Row::end();
+
+
+PageHeader::begin();
+echo 'Bootstrap Accordion & Carousel';
+PageHeader::end();
+Row::begin();
+    Column::begin([
+        'grid' => [
+            [
+                'type' => Column::TYPE_DESKTOP,
+                'size' => Column::SIZE_HALF,
+            ]
+        ]
+    ]);
+    
+    Box::begin([
+        'type'  => Box::TYPE_SOLID,
+        'header'=> 'Collapsible Accordion',
+    ]);    
+    echo Collapse::widget([
+      'items' => [
+          // equivalent to the above
+          'Collapsible Group Item #1' => [
+              'content' => 'Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven\'t heard of them accusamus labore sustainable VHS.',
+              // open its content by default
+              'contentOptions' => ['class' => 'in'],
+              'options' =>[
+                  'class' => 'box-primary',
+              ],
+          ],
+          // another group item
+          'Collapsible Group Danger' => [
+              'content' => 'Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven\'t heard of them accusamus labore sustainable VHS.',
+              'contentOptions' => [],
+              'options' =>[
+                  'class' => 'box-danger',
+              ],
+          ],
+          'Collapsible Group Success' => [
+              'content' => 'Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven\'t heard of them accusamus labore sustainable VHS.',
+              'contentOptions' => [],
+              'options' =>[
+                  'class' => 'box-success',
+              ],
+          ]
+      ]
+  ]);   
+    Box::end();
+    
+    Column::end();
+    
+    Column::begin([
+        'grid' => [
+            [
+                'type' => Column::TYPE_DESKTOP,
+                'size' => Column::SIZE_HALF,
+            ]
+        ]
+    ]);    
+    Box::begin([
+        'type'  => Box::TYPE_SOLID,
+        'header'=> 'Carousel',
+    ]);
+    echo Carousel::widget([
+      'items' => [
+          [
+              'content' => '<img src="http://placehold.it/900x500/39CCCC/ffffff&text=I+Love+Bootstrap"/>',
+              'caption' => 'First Slide',
+          ],
+          [
+              'content' => '<img src="http://placehold.it/900x500/3c8dbc/ffffff&text=I+Love+Bootstrap"/>',
+              'caption' => 'Second Slide',
+          ],
+          [
+              'content' => '<img src="http://placehold.it/900x500/f39c12/ffffff&text=I+Love+Bootstrap"/>',
+              'caption' => 'Third Slide',
+          ],
+      ]
+  ]);    
+    Box::end();
+    Column::end();
+Row::end();
 ?>
-                    <!-- START ALERTS AND CALLOUTS -->
-                    <h2 class="page-header">Alerts and Callouts</h2>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="box box-danger">
-                                <div class="box-header">
-                                    <i class="fa fa-warning"></i>
-                                    <h3 class="box-title">Alerts</h3>
-                                </div><!-- /.box-header -->
-                                <div class="box-body">
-                                    <div class="alert alert-danger alert-dismissable">
-                                        <i class="fa fa-ban"></i>
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                        <b>Alert!</b> Danger alert preview. This alert is dismissable. A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.
-                                    </div>
-                                    <div class="alert alert-info alert-dismissable">
-                                        <i class="fa fa-info"></i>
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                        <b>Alert!</b> Info alert preview. This alert is dismissable.
-                                    </div>
-                                    <div class="alert alert-warning alert-dismissable">
-                                        <i class="fa fa-warning"></i>
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                        <b>Alert!</b> Warning alert preview. This alert is dismissable.
-                                    </div>
-                                    <div class="alert alert-success alert-dismissable">
-                                        <i class="fa fa-check"></i>
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                        <b>Alert!</b> Success alert preview. This alert is dismissable.
-                                    </div>
-                                </div><!-- /.box-body -->
-                            </div><!-- /.box -->
-                        </div><!-- /.col -->
 
-                        <div class="col-md-6">
-                            <div class="box box-info">
-                                <div class="box-header">
-                                    <i class="fa fa-bullhorn"></i>
-                                    <h3 class="box-title">Callouts</h3>
-                                </div><!-- /.box-header -->
-                                <div class="box-body">
-                                    <div class="callout callout-danger">
-                                        <h4>I am a danger callout!</h4>
-                                        <p>There is a problem that we need to fix. A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart.</p>
-                                    </div>
-                                    <div class="callout callout-info">
-                                        <h4>I am an info callout!</h4>
-                                        <p>Follow the steps to continue to payment.</p>
-                                    </div>
-                                    <div class="callout callout-warning">
-                                        <h4>I am a warning callout!</h4>
-                                        <p>This is a yellow callout.</p>
-                                    </div>
-                                </div><!-- /.box-body -->
-                            </div><!-- /.box -->
-                        </div><!-- /.col -->
-                    </div> <!-- /.row -->
-                    <!-- END ALERTS AND CALLOUTS -->
-                    <!-- START CUSTOM TABS -->
-                    <h2 class="page-header">AdminLTE Custom Tabs</h2>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <!-- Custom Tabs -->
-                            <div class="nav-tabs-custom">
-                                <ul class="nav nav-tabs">
-                                    <li class="active"><a href="#tab_1" data-toggle="tab">Tab 1</a></li>
-                                    <li><a href="#tab_2" data-toggle="tab">Tab 2</a></li>
-                                    <li class="dropdown">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                            Dropdown <span class="caret"></span>
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                                            <li role="presentation" class="divider"></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
-                                </ul>
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="tab_1">
-                                        <b>How to use:</b>
-                                        <p>Exactly like the original bootstrap tabs except you should use
-                                            the custom wrapper <code>.nav-tabs-custom</code> to achieve this style.</p>
-                                        A wonderful serenity has taken possession of my entire soul,
-                                        like these sweet mornings of spring which I enjoy with my whole heart.
-                                        I am alone, and feel the charm of existence in this spot,
-                                        which was created for the bliss of souls like mine. I am so happy,
-                                        my dear friend, so absorbed in the exquisite sense of mere tranquil existence,
-                                        that I neglect my talents. I should be incapable of drawing a single stroke
-                                        at the present moment; and yet I feel that I never was a greater artist than now.
-                                    </div><!-- /.tab-pane -->
-                                    <div class="tab-pane" id="tab_2">
-                                        The European languages are members of the same family. Their separate existence is a myth.
-                                        For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
-                                        in their grammar, their pronunciation and their most common words. Everyone realizes why a
-                                        new common language would be desirable: one could refuse to pay expensive translators. To
-                                        achieve this, it would be necessary to have uniform grammar, pronunciation and more common
-                                        words. If several languages coalesce, the grammar of the resulting language is more simple
-                                        and regular than that of the individual languages.
-                                    </div><!-- /.tab-pane -->
-                                </div><!-- /.tab-content -->
-                            </div><!-- nav-tabs-custom -->
-                        </div><!-- /.col -->
-
-                        <div class="col-md-6">
-                            <!-- Custom Tabs (Pulled to the right) -->
-                            <div class="nav-tabs-custom">
-                                <ul class="nav nav-tabs pull-right">
-                                    <li class="active"><a href="#tab_1-1" data-toggle="tab">Tab 1</a></li>
-                                    <li><a href="#tab_2-2" data-toggle="tab">Tab 2</a></li>
-                                    <li class="dropdown">
-                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                            Dropdown <span class="caret"></span>
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                                            <li role="presentation" class="divider"></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="pull-left header"><i class="fa fa-th"></i> Custom Tabs</li>
-                                </ul>
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="tab_1-1">
-                                        <b>How to use:</b>
-                                        <p>Exactly like the original bootstrap tabs except you should use
-                                            the custom wrapper <code>.nav-tabs-custom</code> to achieve this style.</p>
-                                        A wonderful serenity has taken possession of my entire soul,
-                                        like these sweet mornings of spring which I enjoy with my whole heart.
-                                        I am alone, and feel the charm of existence in this spot,
-                                        which was created for the bliss of souls like mine. I am so happy,
-                                        my dear friend, so absorbed in the exquisite sense of mere tranquil existence,
-                                        that I neglect my talents. I should be incapable of drawing a single stroke
-                                        at the present moment; and yet I feel that I never was a greater artist than now.
-                                    </div><!-- /.tab-pane -->
-                                    <div class="tab-pane" id="tab_2-2">
-                                        The European languages are members of the same family. Their separate existence is a myth.
-                                        For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
-                                        in their grammar, their pronunciation and their most common words. Everyone realizes why a
-                                        new common language would be desirable: one could refuse to pay expensive translators. To
-                                        achieve this, it would be necessary to have uniform grammar, pronunciation and more common
-                                        words. If several languages coalesce, the grammar of the resulting language is more simple
-                                        and regular than that of the individual languages.
-                                    </div><!-- /.tab-pane -->
-                                </div><!-- /.tab-content -->
-                            </div><!-- nav-tabs-custom -->
-                        </div><!-- /.col -->
-                    </div> <!-- /.row -->
-                    <!-- END CUSTOM TABS -->
-                    <!-- START PROGRESS BARS -->
-                    <h2 class="page-header">Progress Bars</h2>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="box box-solid">
-                                <div class="box-header">
-                                    <h3 class="box-title">Progress Bars Different Sizes</h3>
-                                </div><!-- /.box-header -->
-                                <div class="box-body">
-                                    No class
-                                    <div class="progress progress-striped">
-                                        <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                            <span class="sr-only">40% Complete (success)</span>
-                                        </div>
-                                    </div>
-                                    Class: <code>.sm</code>
-                                    <div class="progress sm progress-striped active">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                            <span class="sr-only">20% Complete</span>
-                                        </div>
-                                    </div>
-                                    Class: <code>.xs</code>
-                                    <div class="progress xs progress-striped">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                            <span class="sr-only">60% Complete (warning)</span>
-                                        </div>
-                                    </div>
-                                </div><!-- /.box-body -->
-                            </div><!-- /.box -->
-                        </div><!-- /.col (left) -->
-                        <div class="col-md-6">
-                            <div class="box box-solid">
-                                <div class="box-header">
-                                    <h3 class="box-title">Progress bars</h3>
-                                </div><!-- /.box-header -->
-                                <div class="box-body">
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-green" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                            <span class="sr-only">40% Complete (success)</span>
-                                        </div>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-aqua" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                            <span class="sr-only">20% Complete</span>
-                                        </div>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-yellow" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                            <span class="sr-only">60% Complete (warning)</span>
-                                        </div>
-                                    </div>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-red" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                            <span class="sr-only">80% Complete</span>
-                                        </div>
-                                    </div>
-                                </div><!-- /.box-body -->
-                            </div><!-- /.box -->
-                        </div><!-- /.col (right) -->
-                    </div><!-- /.row -->
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="box box-solid">
-                                <div class="box-header">
-                                    <h3 class="box-title">Vertical Progress Bars Different Sizes</h3>
-                                </div><!-- /.box-header -->
-                                <div class="box-body text-center">
-                                    <p>By adding the class <code>.vertical</code> and <code>.xs</code> or <code>.sm</code> we achieve:</p>
-                                    <div class="progress progress-striped vertical">
-                                        <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="height: 40%">
-                                            <span class="sr-only">40%</span>
-                                        </div>
-                                    </div>
-                                    <div class="progress vertical sm progress-striped active">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="height: 100%">
-                                            <span class="sr-only">20%</span>
-                                        </div>
-                                    </div>
-                                    <div class="progress vertical xs progress-striped">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="height: 60%">
-                                            <span class="sr-only">60%</span>
-                                        </div>
-                                    </div>
-                                </div><!-- /.box-body -->
-                            </div><!-- /.box -->
-                        </div><!-- /.col (left) -->
-                        <div class="col-md-6">
-                            <div class="box box-solid">
-                                <div class="box-header">
-                                    <h3 class="box-title">Vertical Progress bars</h3>
-                                </div><!-- /.box-header -->
-                                <div class="box-body text-center">
-                                    <p>By adding the class <code>.vertical</code> we achieve:</p>
-                                    <div class="progress vertical">
-                                        <div class="progress-bar progress-bar-green" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="height: 40%">
-                                            <span class="sr-only">40%</span>
-                                        </div>
-                                    </div>
-                                    <div class="progress vertical">
-                                        <div class="progress-bar progress-bar-aqua" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="height: 20%">
-                                            <span class="sr-only">20%</span>
-                                        </div>
-                                    </div>
-                                    <div class="progress vertical">
-                                        <div class="progress-bar progress-bar-yellow" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="height: 60%">
-                                            <span class="sr-only">60%</span>
-                                        </div>
-                                    </div>
-                                    <div class="progress vertical">
-                                        <div class="progress-bar progress-bar-red" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="height: 80%">
-                                            <span class="sr-only">80%</span>
-                                        </div>
-                                    </div>
-                                </div><!-- /.box-body -->
-                            </div><!-- /.box -->
-                        </div><!-- /.col (right) -->
-                    </div><!-- /.row -->
-                    <!-- END PROGRESS BARS -->
-
-                    <!-- START ACCORDION & CAROUSEL-->
-                    <h2 class="page-header">Bootstrap Accordion & Carousel</h2>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="box box-solid">
-                                <div class="box-header">
-                                    <h3 class="box-title">Collapsible Accordion</h3>
-                                </div><!-- /.box-header -->
-                                <div class="box-body">
-                                    <div class="box-group" id="accordion">
-                                        <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-                                        <div class="panel box box-primary">
-                                            <div class="box-header">
-                                                <h4 class="box-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                                        Collapsible Group Item #1
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseOne" class="panel-collapse collapse in">
-                                                <div class="box-body">
-                                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel box box-danger">
-                                            <div class="box-header">
-                                                <h4 class="box-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                                        Collapsible Group Danger
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseTwo" class="panel-collapse collapse">
-                                                <div class="box-body">
-                                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="panel box box-success">
-                                            <div class="box-header">
-                                                <h4 class="box-title">
-                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                                                        Collapsible Group Success
-                                                    </a>
-                                                </h4>
-                                            </div>
-                                            <div id="collapseThree" class="panel-collapse collapse">
-                                                <div class="box-body">
-                                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div><!-- /.box-body -->
-                            </div><!-- /.box -->
-                        </div><!-- /.col -->
-                        <div class="col-md-6">
-                            <div class="box box-solid">
-                                <div class="box-header">
-                                    <h3 class="box-title">Carousel</h3>
-                                </div><!-- /.box-header -->
-                                <div class="box-body">
-                                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                                        <ol class="carousel-indicators">
-                                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                            <li data-target="#carousel-example-generic" data-slide-to="1" class=""></li>
-                                            <li data-target="#carousel-example-generic" data-slide-to="2" class=""></li>
-                                        </ol>
-                                        <div class="carousel-inner">
-                                            <div class="item active">
-                                                <img src="http://placehold.it/900x500/39CCCC/ffffff&text=I+Love+Bootstrap" alt="First slide">
-                                                <div class="carousel-caption">
-                                                    First Slide
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <img src="http://placehold.it/900x500/3c8dbc/ffffff&text=I+Love+Bootstrap" alt="Second slide">
-                                                <div class="carousel-caption">
-                                                    Second Slide
-                                                </div>
-                                            </div>
-                                            <div class="item">
-                                                <img src="http://placehold.it/900x500/f39c12/ffffff&text=I+Love+Bootstrap" alt="Third slide">
-                                                <div class="carousel-caption">
-                                                    Third Slide
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                                            <span class="glyphicon glyphicon-chevron-left"></span>
-                                        </a>
-                                        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                                            <span class="glyphicon glyphicon-chevron-right"></span>
-                                        </a>
-                                    </div>
-                                </div><!-- /.box-body -->
-                            </div><!-- /.box -->
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                    <!-- END ACCORDION & CAROUSEL-->
 
                     <!-- START TYPOGRAPHY -->
                     <h2 class="page-header">Typography</h2>

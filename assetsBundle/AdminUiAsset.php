@@ -34,6 +34,7 @@ class AdminUiAsset extends AssetBundle
     ];      
         
     public $depends = [
+            'yii\web\JqueryAsset',
             'yii\adminUi\assetsBundle\AdminUiHeadAsset',
     ];        
 }

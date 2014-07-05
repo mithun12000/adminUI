@@ -42,6 +42,8 @@ class Box extends Widget
     public $usebuttonPosition = self::POSITION_HEADER;
     
     public $buttonoption = [];
+    
+    public $bodytoption = [];
 
 
     public $headerIcon;
@@ -127,7 +129,7 @@ class Box extends Widget
      */
     protected function renderBodyBegin()
     {
-        return Html::beginTag('div', ['class' => 'box-body']);
+        return Html::beginTag('div', array_merge($this->bodytoption,['class' => 'box-body'.' '.$this->bodytoption['class']]));
     }
 
     /**

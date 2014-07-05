@@ -64,7 +64,7 @@ class Widget extends \yii\base\Widget
         AdminUiAsset::register($view);
 
         $id = $this->options['id'];
-
+        
         if ($this->clientOptions !== false) {
             $options = empty($this->clientOptions) ? '' : Json::encode($this->clientOptions);
             $js = "jQuery('#$id').$name($options);";

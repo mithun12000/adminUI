@@ -113,8 +113,9 @@ class Tabs extends Widget
      * Renders the widget.
      */
     public function run()
-    {
-        echo $this->renderItems();
+    {        
+        $content =  $this->renderItems();
+        echo Html::tag('div',$content,['class'=>'nav-tabs-custom']);
         $this->registerPlugin('tab');
     }
 
@@ -164,7 +165,22 @@ class Tabs extends Widget
                 $linkOptions['data-toggle'] = 'tab';
                 $header = Html::a($label, '#' . $options['id'], $linkOptions);
                 $panes[] = Html::tag('div', $item['content'], $options);
-            } else {
+            }else if(isset($item['nocontent'])){            
+                $options = array_merge($this->itemOptions, ArrayHelper::getValue($item, 'options', []));
+                $options['id'] = ArrayHelper::getValue($options, 'id', $this->options['id'] . '-tab' . $n);
+
+                Html::addCssClass($options, 'tab-pane');
+                if (ArrayHelper::remove($item, 'active')) {
+                    Html::addCssClass($options, 'active');
+                    Html::addCssClass($headerOptions, 'active');
+                }
+                
+                if(isset($item['header'])){
+                    $header = $item['label'];
+                }else{
+                    $header = Html::a($label, '#' . $options['id'], $linkOptions);
+                }
+            }else {
                 throw new InvalidConfigException("Either the 'content' or 'items' option must be set.");
             }
 

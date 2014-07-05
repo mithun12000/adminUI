@@ -65,7 +65,7 @@ class Collapse extends Widget
     public function init()
     {
         parent::init();
-        Html::addCssClass($this->options, 'panel-group');
+        Html::addCssClass($this->options, 'box-group');
     }
 
     /**
@@ -88,8 +88,8 @@ class Collapse extends Widget
         $items = [];
         $index = 0;
         foreach ($this->items as $header => $item) {
-            $options = ArrayHelper::getValue($item, 'options', []);
-            Html::addCssClass($options, 'panel panel-default');
+            $options = ArrayHelper::getValue($item, 'options', []);            
+            Html::addCssClass($options, 'panel box');
             $items[] = Html::tag('div', $this->renderItem($header, $item, ++$index), $options);
         }
 
@@ -118,15 +118,15 @@ class Collapse extends Widget
                     'data-parent' => '#' . $this->options['id']
                 ]) . "\n";
 
-            $header = Html::tag('h4', $headerToggle, ['class' => 'panel-title']);
+            $header = Html::tag('h4', $headerToggle, ['class' => 'box-title']);
 
-            $content = Html::tag('div', $item['content'], ['class' => 'panel-body']) . "\n";
+            $content = Html::tag('div', $item['content'], ['class' => 'box-body']) . "\n";
         } else {
             throw new InvalidConfigException('The "content" option is required.');
         }
         $group = [];
 
-        $group[] = Html::tag('div', $header, ['class' => 'panel-heading']);
+        $group[] = Html::tag('div', $header, ['class' => 'box-header']);
         $group[] = Html::tag('div', $content, $options);
 
         return implode("\n", $group);

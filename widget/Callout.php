@@ -1,8 +1,10 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
+
+/* 
+ * @author Mithun Mandal <mithun12000@gmail.com>
+ * @project AdminUi
+ * @projecturl https://github.com/mithun12000/adminUI
+ * @country India
  */
 
 namespace yii\adminUi\widget;
@@ -12,15 +14,16 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 /**
- * Alert renders an alert bootstrap component.
+ * Callout renders an callout bootstrap element.
  *
  * For example,
  *
  * ```php
- * echo Alert::widget([
+ * echo Callout::widget([
  *     'options' => [
- *         'class' => 'alert-info',
+ *         'class' => 'callout-danger',
  *     ],
+ *     'header' => 'hi callout',
  *     'body' => 'Say hello...',
  * ]);
  * ```
@@ -29,22 +32,23 @@ use yii\helpers\Html;
  * and [[end()]] calls within the alert box:
  *
  * ```php
- * Alert::begin([
+ * Callout::begin([
  *     'options' => [
  *         'class' => 'alert-warning',
  *     ],
+ *     'header' => 'hi callout'
  * ]);
  *
  * echo 'Say hello...';
  *
- * Alert::end();
+ * Callout::end();
  * ```
  *
  * @see http://getbootstrap.com/components/#alerts
- * @author Antonio Ramirez <amigo.cobos@gmail.com>
+ * @author Mithun Mandal <mithun12000@gmail.com>
  * @since 2.0
  */
-class Alert extends Widget
+class Callout extends Widget
 {
     /**
      * @var string the body content in the alert component. Note that anything between
@@ -66,11 +70,7 @@ class Alert extends Widget
      * Please refer to the [Alert documentation](http://getbootstrap.com/components/#alerts)
      * for the supported HTML attributes.
      */
-    public $closeButton = [];
-    
-    public $icon;
-    
-    public $fadeeffect = false;
+    public $header;
 
     /**
      * Initializes the widget.
@@ -82,7 +82,7 @@ class Alert extends Widget
         $this->initOptions();
 
         echo Html::beginTag('div', $this->options) . "\n";
-        echo $this->renderBodyBegin() . "\n";
+        echo $this->renderHeaderBegin() . "\n";
     }
 
     /**
@@ -100,9 +100,13 @@ class Alert extends Widget
      * Renders the close button if any before rendering the content.
      * @return string the rendering result
      */
-    protected function renderBodyBegin()
+    protected function renderHeaderBegin()
     {
-        return $this->renderIcon().$this->renderCloseButton();
+        if($this->header){
+            return Html::tag('h4',  $this->header);
+        }else{
+            return null;
+        }
     }
 
     /**
@@ -115,56 +119,11 @@ class Alert extends Widget
     }
 
     /**
-     * Renders the close button.
-     * @return string the rendering result
-     */
-    protected function renderCloseButton()
-    {
-        if ($this->closeButton !== null) {
-            $tag = ArrayHelper::remove($this->closeButton, 'tag', 'button');
-            $label = ArrayHelper::remove($this->closeButton, 'label', '&times;');
-            if ($tag === 'button' && !isset($this->closeButton['type'])) {
-                $this->closeButton['type'] = 'button';
-            }
-
-            return Html::tag($tag, $label, $this->closeButton);
-        } else {
-            return null;
-        }
-    }
-    
-    /**
-     * Renders the close button.
-     * @return string the rendering result
-     */
-    protected function renderIcon(){
-        if ($this->icon !== null) {
-            return Html::tag('i', '', ['class' => $this->icon]);
-        } else {
-            return null;
-        }
-    }
-
-    /**
      * Initializes the widget options.
      * This method sets the default values for various options.
      */
     protected function initOptions()
     {
-        Html::addCssClass($this->options, 'alert');
-        
-        if($this->fadeeffect){
-            Html::addCssClass($this->options, 'fade');
-            Html::addCssClass($this->options, 'in');            
-        }
-        $this->options = array_merge($this->options,['role'=>'alert']);
-
-        if ($this->closeButton !== null) {
-            $this->closeButton = array_merge([
-                'data-dismiss' => 'alert',
-                'aria-hidden' => 'true',
-                'class' => 'close',
-            ], $this->closeButton);
-        }
+        Html::addCssClass($this->options, 'callout');
     }
 }
