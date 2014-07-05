@@ -20,6 +20,11 @@ use yii\helpers\Html;
  */
 class Dropdown extends Widget
 {
+    const NAV = 1;
+    const DROPDOWN = 2;
+    
+    const DEFAULTTYEP = self::NAV;
+
     /**
      * @var array list of menu items in the dropdown. Each array element can be either an HTML string,
      * or an array representing a single menu with the following structure:
@@ -39,6 +44,8 @@ class Dropdown extends Widget
      * @var boolean whether the labels for header items should be HTML-encoded.
      */
     public $encodeLabels = true;
+    
+    public $type;
 
 
     /**
@@ -48,7 +55,12 @@ class Dropdown extends Widget
     public function init()
     {
         parent::init();
-        Html::addCssClass($this->options, 'dropdown-menu');
+        if($this->type){
+            $class = ($this->type == self::DROPDOWN) ? 'dropdown-menu' : 'treeview-menu';
+            Html::addCssClass($this->options,$class);
+        }else{
+            Html::addCssClass($this->options, 'treeview-menu');   
+        }
     }
 
     /**
