@@ -109,7 +109,7 @@ class Header extends Widget
     public function run()
     {        
         $tag = ArrayHelper::remove($this->options, 'tag', 'nav');
-        echo Html::endTag($tag, $this->options);
+        echo Html::endTag($tag);
         AdminUiAsset::register($this->getView());
     }
 }

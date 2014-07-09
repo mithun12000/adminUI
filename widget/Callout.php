@@ -57,18 +57,7 @@ class Callout extends Widget
      */
     public $body;
     /**
-     * @var array the options for rendering the close button tag.
-     * The close button is displayed in the header of the modal window. Clicking
-     * on the button will hide the modal window. If this is null, no close button will be rendered.
-     *
-     * The following special options are supported:
-     *
-     * - tag: string, the tag name of the button. Defaults to 'button'.
-     * - label: string, the label of the button. Defaults to '&times;'.
-     *
-     * The rest of the options will be rendered as the HTML attributes of the button tag.
-     * Please refer to the [Alert documentation](http://getbootstrap.com/components/#alerts)
-     * for the supported HTML attributes.
+     * @var string the header content in the callout component.
      */
     public $header;
 

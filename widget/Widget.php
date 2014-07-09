@@ -85,6 +85,7 @@ class Widget extends \yii\base\Widget
     }
     
     protected function getBadgeClass($type) {
+        $class = '';
         switch($type){
             case 'new': $class = 'badge pull-right bg-green'; break;
             case 'notification1':$class = 'badge pull-right bg-red'; break;

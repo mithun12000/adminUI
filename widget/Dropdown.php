@@ -93,7 +93,7 @@ class Dropdown extends Widget
                 continue;
             }
             
-            $options = ArrayHelper::getValue($item, 'options', []);
+            $options = ArrayHelper::getValue($item, 'options', []);            
             
             if(isset($item['divider'])){      
                 Html::addCssClass($options, 'divider');
@@ -107,6 +107,7 @@ class Dropdown extends Widget
             $label = $this->encodeLabels ? Html::encode($item['label']) : $item['label'];            
             $linkOptions = ArrayHelper::getValue($item, 'linkOptions', []);
             $linkOptions['tabindex'] = '-1';
+            $badgeOptions = ArrayHelper::getValue($item, 'badgeOptions', []);
             
             $label = Html::tag('i', '', $linkOptions).Html::tag('span', $label);
             $label .= $this->renderBadge($badgeOptions);
