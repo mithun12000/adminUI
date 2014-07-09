@@ -46,7 +46,7 @@ class Dropdown extends Widget
     public $encodeLabels = true;
     
     /**
-     * @var string|constant droupdown type.
+     * @var string droupdown type.
      */
     public $type;
     

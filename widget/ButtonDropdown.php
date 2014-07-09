@@ -6,7 +6,7 @@
  */
 
 namespace yii\adminUi\widget;
-
+use yii;
 use yii\helpers\Html;
 
 /**

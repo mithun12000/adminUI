@@ -10,6 +10,7 @@ namespace yii\adminUi\widget;
 use Yii;
 use yii\helpers\Json;
 use yii\adminUi\assetsBundle\AdminUiAsset as AdminUiAsset;
+use yii\helpers\Html;
 
 /**
  * \yii\bootstrap\Widget is the base class for all bootstrap widgets.
