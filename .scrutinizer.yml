@@ -1,4 +1,2 @@
 imports:
     - php
-tools:
-    external_code_coverage: true
