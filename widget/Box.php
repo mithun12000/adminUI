@@ -111,10 +111,7 @@ class Box extends Widget
             }
             
             if($this->usebutton){
-                if($this->usebuttonPosition == self::POSITION_HEADER){
-                    $btns = $this->rendertemplate($this->buttonoption);
-                    $content .= Html::tag('div', $btns, ['class' => 'pull-right box-tools']);
-                }
+                $this->renderButton(self::POSITION_HEADER);
             }
             
             return Html::tag('div', $content, array_merge(['class' => 'box-header'],  $this->headeroption));
@@ -150,10 +147,7 @@ class Box extends Widget
         if ($this->footer !== null) {
             $content = $this->footer;
             if($this->usebutton){
-                if($this->usebuttonPosition == self::POSITION_FOOTER){
-                    $btns = $this->rendertemplate($this->buttonoption);
-                    $content .= Html::tag('div', $btns, ['class' => 'pull-right box-tools']);
-                }
+                $this->renderButton(self::POSITION_FOOTER);
             }
             return Html::tag('div', "\n" . $content . "\n", ['class' => 'box-footer clearfix']);            
         } else {
@@ -220,5 +214,12 @@ class Box extends Widget
                 return '';
             }
         }, $this->template);
+    }
+    
+    protected function renderButton($position){
+        if($this->usebuttonPosition == $position){
+            $btns = $this->rendertemplate($this->buttonoption);
+            $content .= Html::tag('div', $btns, ['class' => 'pull-right box-tools']);
+        }
     }
 }

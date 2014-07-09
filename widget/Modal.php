@@ -35,6 +35,8 @@ use yii\helpers\Html;
  */
 class Modal extends Widget
 {
+    use RenderButtonTrait;
+    
     const SIZE_LARGE = "modal-lg";
     const SIZE_SMALL = "modal-sm";
     const SIZE_DEFAULT = "";
@@ -156,44 +158,6 @@ class Modal extends Widget
     {
         if ($this->footer !== null) {
             return Html::tag('div', "\n" . $this->footer . "\n", ['class' => 'modal-footer']);
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * Renders the toggle button.
-     * @return string the rendering result
-     */
-    protected function renderToggleButton()
-    {
-        if ($this->toggleButton !== null) {
-            $tag = ArrayHelper::remove($this->toggleButton, 'tag', 'button');
-            $label = ArrayHelper::remove($this->toggleButton, 'label', 'Show');
-            if ($tag === 'button' && !isset($this->toggleButton['type'])) {
-                $this->toggleButton['type'] = 'button';
-            }
-
-            return Html::tag($tag, $label, $this->toggleButton);
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * Renders the close button.
-     * @return string the rendering result
-     */
-    protected function renderCloseButton()
-    {
-        if ($this->closeButton !== null) {
-            $tag = ArrayHelper::remove($this->closeButton, 'tag', 'button');
-            $label = ArrayHelper::remove($this->closeButton, 'label', '&times;');
-            if ($tag === 'button' && !isset($this->closeButton['type'])) {
-                $this->closeButton['type'] = 'button';
-            }
-
-            return Html::tag($tag, $label, $this->closeButton);
         } else {
             return null;
         }

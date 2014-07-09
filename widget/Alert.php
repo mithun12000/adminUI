@@ -46,6 +46,7 @@ use yii\helpers\Html;
  */
 class Alert extends Widget
 {
+    use RenderButtonTrait;
     /**
      * @var string the body content in the alert component. Note that anything between
      * the [[begin()]] and [[end()]] calls of the Alert widget will also be treated
@@ -114,25 +115,7 @@ class Alert extends Widget
         return $this->body . "\n";
     }
 
-    /**
-     * Renders the close button.
-     * @return string the rendering result
-     */
-    protected function renderCloseButton()
-    {
-        if ($this->closeButton !== null) {
-            $tag = ArrayHelper::remove($this->closeButton, 'tag', 'button');
-            $label = ArrayHelper::remove($this->closeButton, 'label', '&times;');
-            if ($tag === 'button' && !isset($this->closeButton['type'])) {
-                $this->closeButton['type'] = 'button';
-            }
-
-            return Html::tag($tag, $label, $this->closeButton);
-        } else {
-            return null;
-        }
-    }
-    
+       
     /**
      * Renders the close button.
      * @return string the rendering result

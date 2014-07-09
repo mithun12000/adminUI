@@ -79,4 +79,17 @@ class Widget extends \yii\base\Widget
             $view->registerJs(implode("\n", $js));
         }
     }
+    
+    protected function renderBadge($badgeOptions) {        
+        return ($badgeOptions) ? Html::tag('small', $badgeOptions['text'], ['class'=> $this->getBadgeClass($badgeOptions['type'])]) : '';
+    }
+    
+    protected function getBadgeClass($type) {
+        switch($type){
+            case 'new': $class = 'badge pull-right bg-green'; break;
+            case 'notification1':$class = 'badge pull-right bg-red'; break;
+            case 'notification2':$class = 'badge pull-right bg-yellow'; break;
+        }
+        return $class;
+    }
 }

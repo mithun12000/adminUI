@@ -109,9 +109,7 @@ class Dropdown extends Widget
             $linkOptions['tabindex'] = '-1';
             
             $label = Html::tag('i', '', $linkOptions).Html::tag('span', $label);
-            if($badgeOptions){            
-                $label .= Html::tag('small', $badgeOptions['text'], ['class'=> $this->getBadgeClass($badgeOptions['type'])]);
-            }
+            $label .= $this->renderBadge($badgeOptions);
         
             $content = Html::a($label, ArrayHelper::getValue($item, 'url', '#'));
             if (!empty($item['items'])) {

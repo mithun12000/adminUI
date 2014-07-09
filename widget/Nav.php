@@ -189,9 +189,7 @@ class Nav extends Widget
         }
 
         $label = Html::tag('i', '', $linkOptions).Html::tag('span', $label);
-        if($badgeOptions){            
-            $label .= Html::tag('small', $badgeOptions['text'], ['class'=> $this->getBadgeClass($badgeOptions['type'])]);
-        }
+        $label .= $this->renderBadge($badgeOptions);
         if ($items !== null) {
             $label .= Html::tag('i', '', ['class' => 'fa fa-angle-left pull-right']);
         }
@@ -251,67 +249,5 @@ class Nav extends Widget
         }
 
         return false;
-    }
-    
-    protected function getBadgeClass($type) {
-        switch($type){
-            case 'new': $class = 'badge pull-right bg-green'; break;
-            case 'notification1':$class = 'badge pull-right bg-red'; break;
-            case 'notification2':$class = 'badge pull-right bg-yellow'; break;
-        }
-        /*
-         * .bg-black {
-  color: #f9f9f9 !important;
-}
-.bg-gray {
-  background-color: #eaeaec !important;
-}
-.bg-black {
-  background-color: #222222 !important;
-}
-.bg-red {
-  background-color: #f56954 !important;
-}
-.bg-yellow {
-  background-color: #f39c12 !important;
-}
-.bg-aqua {
-  background-color: #00c0ef !important;
-}
-.bg-blue {
-  background-color: #0073b7 !important;
-}
-.bg-light-blue {
-  background-color: #3c8dbc !important;
-}
-.bg-green {
-  background-color: #00a65a !important;
-}
-.bg-navy {
-  background-color: #001f3f !important;
-}
-.bg-teal {
-  background-color: #39cccc !important;
-}
-.bg-olive {
-  background-color: #3d9970 !important;
-}
-.bg-lime {
-  background-color: #01ff70 !important;
-}
-.bg-orange {
-  background-color: #ff851b !important;
-}
-.bg-fuchsia {
-  background-color: #f012be !important;
-}
-.bg-purple {
-  background-color: #932ab6 !important;
-}
-.bg-maroon {
-  background-color: #85144b !important;
-}
-         */
-        return $class;
     }
 }
