@@ -13,7 +13,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 
 /**
- * NavBar renders a navbar HTML component.
+ * Header renders a Header HTML component.
  *
  * Any content enclosed between the [[begin()]] and [[end()]] calls of NavBar
  * is treated as the content of the navbar. You may use widgets such as [[Nav]]
