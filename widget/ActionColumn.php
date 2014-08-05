@@ -88,6 +88,7 @@ class ActionColumn extends Column
     public function init()
     {
         parent::init();
+        $this->contentOptions = array_merge($this->contentOptions,['width'=>90]);
         $this->initDefaultButtons();
     }
 
@@ -98,37 +99,46 @@ class ActionColumn extends Column
     {
         if (!isset($this->buttons['view'])) {
             $this->buttons['view'] = function ($url, $model) {
-                return Html::a('<span class="fa fa-eye"></span>', $url, [
+                return Html::tag('li',Html::a('<span class="fa fa-eye fa-lg"></span> '.Yii::t('yii', 'View'), $url, [
                     'title' => Yii::t('yii', 'View'),
                     'data-pjax' => '0',
-                ]);
+                ]));
             };
         }
         if (!isset($this->buttons['update'])) {
             $this->buttons['update'] = function ($url, $model) {
-                return Html::a('<span class="fa fa-edit"></span>', $url, [
+                return Html::tag('li',Html::a('<span class="fa fa-edit fa-lg"></span> '.Yii::t('yii', 'Update'), $url, [
                     'title' => Yii::t('yii', 'Update'),
                     'data-pjax' => '0',
-                ]);
+                ]));
             };
         }
         if (!isset($this->buttons['delete'])) {
             $this->buttons['delete'] = function ($url, $model) {
-                return Html::a('<span class="fa fa-trash-o"></span>', $url, [
+                return Html::tag('li',Html::a('<span class="fa fa-trash-o fa-lg"></span> '.Yii::t('yii', 'Delete'), $url, [
                     'title' => Yii::t('yii', 'Delete'),
                     'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
                     'data-method' => 'post',
                     'data-pjax' => '0',
-                ]);
+                ]));
             };
         }
         
         if (!isset($this->buttons['restore'])) {
             $this->buttons['restore'] = function ($url, $model) {
-                return Html::a('<span class="fa fa-undo"></span>', $url, [
+                return Html::tag('li',Html::a('<span class="fa fa-undo fa-lg"></span> '.Yii::t('yii', 'Restore'), $url, [
                     'title' => Yii::t('yii', 'Restore'),
                     'data-pjax' => '0',
-                ]);
+                ]));
+            };
+        }
+        
+        if (!isset($this->buttons['changepass'])) {
+            $this->buttons['changepass'] = function ($url, $model) {
+                return Html::tag('li',Html::a('<span class="fa fa-shield fa-lg"></span> '.Yii::t('yii', 'Change Password'), $url, [
+                    'title' => Yii::t('yii', 'Change Password'),
+                    'data-pjax' => '0',
+                ]));
             };
         }
     }
@@ -159,7 +169,15 @@ class ActionColumn extends Column
      */
     protected function renderDataCellContent($model, $key, $index)
     {
-        return preg_replace_callback('/\\{([\w\-\/]+)\\}/', function ($matches) use ($model, $key, $index) {
+        $content = Html::tag('button','Actions <span class="caret"></span>',[            
+                    'type'  => 'button',
+                    'class' => 'btn btn-default dropdown-toggle',
+                    'data-toggle' => 'dropdown',
+                ]);
+        
+        
+        
+        $buttons = preg_replace_callback('/\\{([\w\-\/]+)\\}/', function ($matches) use ($model, $key, $index) {
             $name = $matches[1];
             if (isset($this->buttons[$name])) {
                 $url = $this->createUrl($name, $model, $key, $index);
@@ -169,5 +187,18 @@ class ActionColumn extends Column
                 return '';
             }
         }, $this->template);
+        
+        if($buttons==''){
+            return $buttons;
+        }
+        
+        $content .= Html::tag('ul',$buttons,[             
+                    'class' => 'dropdown-menu pull-right',
+                    'role' => 'menu',
+                ]);
+        
+        return Html::tag('div',$content, [
+                    'class' => 'dropdown'
+                ]);
     }
 }

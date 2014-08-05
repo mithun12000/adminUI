@@ -5,9 +5,9 @@ use yii\adminUi\assetsBundle\AdminUiAsset;
 $bundle = AdminUiAsset::register($this);
 if($type=='topbar'){
 ?>
-<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+<a href="#" class="dropdown-toggle navbar-username" data-toggle="dropdown">
 	<i class="glyphicon glyphicon-user"></i>
-	<span><?php echo Yii::$app->user->identity->fullname;?> <i class="caret"></i></span>
+	<span><?php echo Yii::$app->user->identity->username;?> <i class="caret"></i></span>
 </a>
 <ul class="dropdown-menu">
 	<!-- User image -->
@@ -15,7 +15,7 @@ if($type=='topbar'){
 		<img src="<?php echo $bundle->baseUrl?>/img/avatar3.png" class="img-circle" alt="User Image" />
 		<p>
 			<?php echo Yii::$app->user->identity->fullname;?> - Web Developer
-			<small>Member since Nov. 2012</small>
+                        <small><?php echo (Yii::$app->user->identity->createdOn) ? 'Member since '.date('M. Y',  strtotime(Yii::$app->user->identity->createdOn)) : '';?></small>
 		</p>
 	</li>
         <?php /*/?>

@@ -40,6 +40,8 @@ use yii\helpers\Html;
 class CheckboxColumn extends Column
 {
     
+    public $buttons = [];
+    
     /**
      * @var string the name of the input checkbox input fields. This will be appended with `[]` to ensure it is an array.
      */
@@ -76,7 +78,7 @@ class CheckboxColumn extends Column
      */
     protected function renderHeaderCellContent()
     {
-        $name = rtrim($this->name, '[]') . '_all';
+       /* $name = rtrim($this->name, '[]') . '_all';
         $id = $this->grid->options['id'];
         $options = json_encode([
             'name' => $this->name,
@@ -89,6 +91,15 @@ class CheckboxColumn extends Column
         } else {
             return Html::checkBox($name, false, ['class' => 'select-on-check-all','data-target'=>$this->name,'data-checkall'=>1,'data-parent-id'=>$id]);
         }
+        * 
+        * 
+        */
+        $this->buttons['exportToexel'] = function ($url, $model) {
+                return Html::tag('li',Html::a('<span class="fa fa-eye fa-lg"></span> '.Yii::t('yii', 'exportToexel'), $url, [
+                    'title' => Yii::t('yii', 'exportToexel'),
+                    'data-pjax' => '0',
+                ]));
+            };
     }
     
     /**

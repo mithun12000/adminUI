@@ -3402,3 +3402,12 @@ fieldset[disabled] .btn-vk.active {
   color: #587ea3;
   background-color: #ffffff;
 }
+
+@media screen and (max-width: 320px) {
+  .navbar-username {
+    width:139px;
+  }
+  .navbar-username span{
+      
+  }
+}
