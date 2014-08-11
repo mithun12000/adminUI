@@ -26,6 +26,7 @@ $this->beginPage()
     <meta charset="<?= Yii::$app->charset ?>"/>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <title><?= Html::encode($this->title) ?></title>
+	<?= Html::csrfMetaTags() ?>
     <?php $this->head() ?>
 </head>
 <body class="skin-blue">
