@@ -76,7 +76,7 @@ class Column extends Widget
     {
         if($this->grid){
             $this->options = array_merge([
-            'class' => $this->getGridClass().' '.$this->options['class'],
+            'class' => $this->getGridClass().(isset($this->options['class'])) ? ' '.$this->options['class'] : '',
             ], $this->options);
         }else{
             $this->options = array_merge([
