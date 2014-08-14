@@ -80,6 +80,13 @@ class ActionColumn extends Column
      * If this property is not set, button URLs will be created using [[createUrl()]].
      */
     public $urlCreator;
+    
+    
+    /**
+     * @var callback a callback that check access of that button creation.     * 
+     * 
+     */
+    public $checkaccess;
 
 
     /**
@@ -90,6 +97,12 @@ class ActionColumn extends Column
         parent::init();
         $this->contentOptions = array_merge($this->contentOptions,['width'=>90]);
         $this->initDefaultButtons();
+        
+        if(!$this->checkaccess){
+            $this->checkaccess = function($url){
+                return true;
+            };
+        }
     }
 
     /**
@@ -181,8 +194,11 @@ class ActionColumn extends Column
             $name = $matches[1];
             if (isset($this->buttons[$name])) {
                 $url = $this->createUrl($name, $model, $key, $index);
-
-                return call_user_func($this->buttons[$name], $url, $model);
+                if(call_user_func($this->checkaccess, $url)){
+                    return call_user_func($this->buttons[$name], $url, $model);
+                }else{
+                    return '';
+                }
             } else {
                 return '';
             }
