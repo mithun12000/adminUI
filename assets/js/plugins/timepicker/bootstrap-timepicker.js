@@ -901,3 +901,7 @@
   $.fn.timepicker.Constructor = Timepicker;
 
 })(jQuery, window, document);
+
+jQuery(".timepicker").timepicker({
+	showInputs: false
+});
