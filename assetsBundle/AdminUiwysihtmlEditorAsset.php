@@ -23,6 +23,11 @@ class AdminUiwysihtmlEditorAsset extends AssetBundle
     ];
     
     public $js  = [
-            'js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js',
-    ];        
+           // 'js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.js',
+            'js/plugins/ckeditor/ckeditor.js',
+    ];    
+     public $depends = [
+            'yii\web\JqueryAsset',
+            'yii\adminUi\assetsBundle\AdminUiAsset',
+    ];
 }

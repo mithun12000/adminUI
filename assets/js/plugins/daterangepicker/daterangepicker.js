@@ -40,7 +40,7 @@
         this.cancelClass = 'btn-default';
 
         this.format = 'MM/DD/YYYY';
-        this.separator = ' - ';
+        this.separator = ' | ';
 
         this.locale = {
             applyLabel: 'Apply',
@@ -881,3 +881,6 @@
     };
 
 }(window.jQuery);
+
+
+$('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'YYYY-MM-DD h:mm A'});

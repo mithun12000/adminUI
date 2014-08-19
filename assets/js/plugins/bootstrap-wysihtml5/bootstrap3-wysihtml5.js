@@ -348,3 +348,6 @@
 
   var locale = $.fn.wysihtml5.locale = {};
 })(window.jQuery, window.wysihtml5);
+
+
+CKEDITOR.replace('editor1');
