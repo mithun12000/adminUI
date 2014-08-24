@@ -126,7 +126,7 @@ class Box extends Widget
      */
     protected function renderBodyBegin()
     {
-        return Html::beginTag('div', array_merge($this->bodytoption,['class' => 'box-body'.' '.$this->bodytoption['class']]));
+        return Html::beginTag('div', array_merge($this->bodytoption,['class' => 'box-body'.' '.isset($this->bodytoption['class']) ?  $this->bodytoption['class']:'']));
     }
 
     /**
