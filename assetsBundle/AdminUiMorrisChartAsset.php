@@ -20,10 +20,6 @@ class AdminUiMorrisChartAsset extends AssetBundle
     public $sourcePath = '@vendor/adminUi/assets/';
     public $css = [        
         'css/morris/morris.css',
-        //'css/jvectormap/jquery-jvectormap-1.2.2.css',
-        //'css/fullcalendar/fullcalendar.css',
-        //'css/daterangepicker/daterangepicker-bs3.css',
-        //'css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css',
     ];
     
     public $js  = [

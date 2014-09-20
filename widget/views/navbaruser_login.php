@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Url;
+use yii\helpers\Html;
 use yii\adminUi\assetsBundle\AdminUiAsset;
 
 $bundle = AdminUiAsset::register($this);
@@ -14,7 +15,7 @@ if($type=='topbar'){
 	<li class="user-header bg-light-blue">
 		<img src="<?php echo $bundle->baseUrl?>/img/avatar3.png" class="img-circle" alt="User Image" />
 		<p>
-			<?php echo Yii::$app->user->identity->fullname;?> - Web Developer
+			<?=Yii::$app->user->identity->firstname?> - <?=Yii::$app->user->identity->groupName?>
                         <small><?php echo (Yii::$app->user->identity->createdOn) ? 'Member since '.date('M. Y',  strtotime(Yii::$app->user->identity->createdOn)) : '';?></small>
 		</p>
 	</li>
@@ -34,7 +35,7 @@ if($type=='topbar'){
 	<!-- Menu Footer-->
 	<li class="user-footer">
 		<div class="pull-left">
-			<a href="#" class="btn btn-default btn-flat">Profile</a>
+                    <?=  Html::a('Profile', ['/profile/default/index'], ['class'=>'btn btn-default btn-flat'])?>
 		</div>
 		<div class="pull-right">
                     <a href="<?php echo Url::toRoute('/site/logout');?>" data-method="post" class="btn btn-default btn-flat">Sign out</a>
@@ -47,7 +48,7 @@ if($type=='topbar'){
         <img src="<?php echo $bundle->baseUrl?>/img/avatar3.png" class="img-circle" alt="User Image" />
     </div>
     <div class="pull-left info">
-        <p>Hello, <?php echo Yii::$app->user->identity->fullname;?></p>
+        <p>Hello, <?=  Html::a(Yii::$app->user->identity->fullname, ['/profile/default/index'])?></p>
 
         <i class="fa fa-circle text-success"></i> Online
     </div>

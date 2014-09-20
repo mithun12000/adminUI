@@ -29,29 +29,24 @@ class AdminUiBootstrap implements BootstrapInterface{
         
 		$app->set('assetManager' , [
 			'class'	=> 'yii\web\AssetManager',
-            'bundles' => [                
-                'yii\bootstrap\BootstrapAsset' => [
-                     'sourcePath' => null,
-                     'css' => []
-                ],
-                'yii\bootstrap\BootstrapPluginAsset' => [
-                     'sourcePath' => null,
-                     'js' => []
-                ],
-                'yii\grid\GridViewAsset' => [
-                    'depends'   => [
-                        'backend\assets\AppAsset'
-                    ],
-                ],
-				'backend\assets\AppAsset' => [
-					'css'	=> [],
-				],
+                        'bundles' => [
+                                'yii\widgets\ActiveFormAsset' => [
+                                     'js' => [],
+                                     'depends' => [
+                                         'yii\adminUi\assetsBundle\AdminUiActiveForm',
+                                     ],
+                                ],                        
+                                'yii\grid\GridViewAsset' => [
+                                    'depends'   => [
+                                        'backend\assets\AppAsset'
+                                    ],
+                                ],
             ],            
             'linkAssets' => true,
         ]);
         
         Event::on(Controller::className(), Controller::EVENT_BEFORE_ACTION, function ($event) {
-            if($event->action->id == 'login' && in_array('backend',  explode("\\", $event->sender->className()))){
+            if(in_array($event->action->id,['login','forgot','reset-password']) && in_array('backend',  explode("\\", $event->sender->className()))){
                 $event->sender->layout = '//blank';
             }
         });

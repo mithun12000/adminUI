@@ -17,12 +17,16 @@ use yii\web\AssetBundle;
  */
 class AdminUiDatePickerAsset extends AssetBundle
 {
-    public $sourcePath = '@vendor/adminUi/assets/';
+    public $sourcePath = '@bower/bootstrap-daterangepicker';
     public $css = [                
-        'css/daterangepicker/daterangepicker-bs3.css',
+        'daterangepicker-bs3.css',
     ];
     
     public $js  = [
-            'js/plugins/daterangepicker/daterangepicker.js',
-    ];        
+        'daterangepicker.js',
+    ];  
+    public $depends = [
+        'yii\web\JqueryAsset',
+        'yii\adminUi\assetsBundle\AdminUiAsset',
+    ];
 }

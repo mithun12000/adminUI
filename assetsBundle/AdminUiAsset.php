@@ -20,21 +20,20 @@ class AdminUiAsset extends AssetBundle
     public $sourcePath = '@vendor/adminUi/assets/';
     public $baseUrl = '@web';
     public $css = [
-        'css/bootstrap.min.css',
-        'css/font-awesome.min.css',
-        'css/ionicons.min.css',
         'css/AdminLTE.css',
     ];
     
-    public $js  = [
-            //'js/jquery.min.js',
-            'js/bootstrap.min.js',
-            'js/jquery-ui-1.10.3.min.js',
+    public $js  = [            
+            //'js/jquery-ui-1.10.3.min.js',
             'js/AdminLTE/app.js'
     ];      
         
     public $depends = [
             'yii\web\JqueryAsset',
+            'yii\bootstrap\BootstrapAsset',
+            'yii\bootstrap\BootstrapPluginAsset',
             'yii\adminUi\assetsBundle\AdminUiHeadAsset',
+            'yii\adminUi\assetsBundle\FontAwesomeAsset',
+            'yii\adminUi\assetsBundle\FontIoniconsAsset',
     ];        
 }

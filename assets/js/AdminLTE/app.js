@@ -98,10 +98,8 @@ $(function() {
         var box = $(this).parents(".box").first();
         box.slideUp();
     });
-
-    /* Sidebar tree view */
-    $(".sidebar .treeview").tree();
-
+    
+    
     /* 
      * Make sure that the sidebar is streched full height
      * ---------------------------------------------
@@ -112,7 +110,8 @@ $(function() {
      **/
     function _fix() {
         //Get window height and the wrapper height
-        var height = $(window).height() - $("body > .header").height();
+        //var height = $(window).height() - $("body > .header").height();
+        var height = $(window).height() - $("body > .header").height() - ($("body > .footer").outerHeight() || 0);
         $(".wrapper").css("min-height", height + "px");
         var content = $(".wrapper").height();
         //If the wrapper height is greater than the window
@@ -164,6 +163,13 @@ $(function() {
             }
         }
      });
+     
+     try{
+        $(".textarea").wysihtml5();
+    }catch(e){}
+
+    /* Sidebar tree view */
+    $(".sidebar .treeview").tree();
 
 });
 function fix_sidebar() {

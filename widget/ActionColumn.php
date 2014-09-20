@@ -11,6 +11,7 @@ use Yii;
 use Closure;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use common\component\AppActiveRecord;
 
 /**
  * ActionColumn is a column for the [[GridView]] widget that displays buttons for viewing and manipulating the items.
@@ -120,8 +121,8 @@ class ActionColumn extends Column
         }
         if (!isset($this->buttons['update'])) {
             $this->buttons['update'] = function ($url, $model) {
-                return Html::tag('li',Html::a('<span class="fa fa-edit fa-lg"></span> '.Yii::t('yii', 'Update'), $url, [
-                    'title' => Yii::t('yii', 'Update'),
+                return Html::tag('li',Html::a('<span class="fa fa-edit fa-lg"></span> '.Yii::t('yii', 'Edit'), $url, [
+                    'title' => Yii::t('yii', 'Edit'),
                     'data-pjax' => '0',
                 ]));
             };
@@ -146,12 +147,63 @@ class ActionColumn extends Column
             };
         }
         
+        if (!isset($this->buttons['setpassword'])) {
+            $this->buttons['setpassword'] = function ($url, $model) {
+                return Html::tag('li',Html::a('<span class="fa fa-shield fa-lg"></span> '.Yii::t('yii', 'Set Password'), $url, [
+                    'title' => Yii::t('yii', 'Set Password'),
+                    'data-pjax' => '0',
+                ]));
+            };
+        }
+        
         if (!isset($this->buttons['changepass'])) {
             $this->buttons['changepass'] = function ($url, $model) {
                 return Html::tag('li',Html::a('<span class="fa fa-shield fa-lg"></span> '.Yii::t('yii', 'Change Password'), $url, [
                     'title' => Yii::t('yii', 'Change Password'),
                     'data-pjax' => '0',
                 ]));
+            };
+        }
+        
+        if (!isset($this->buttons['publish'])) {
+            $this->buttons['publish'] = function ($url, $model) {
+                if($model->state != AppActiveRecord::STATUS_PUBLISH){
+                    return Html::tag('li',Html::a('<span class="fa fa-check-square-o fa-lg"></span> '.Yii::t('yii', 'Publish'), $url, [
+                        'title' => Yii::t('yii', 'Publish'),
+                        'data-pjax' => '0',
+                        'data-method' => 'post',
+                    ]));
+                }else{
+                    return '';
+                }                
+            };
+        }
+        
+        if (!isset($this->buttons['unpublish'])) {
+            $this->buttons['unpublish'] = function ($url, $model) {
+                if($model->state != AppActiveRecord::STATUS_UNPUBLISH){
+                    return Html::tag('li',Html::a('<span class="fa fa-minus-square-o fa-lg"></span> '.Yii::t('yii', 'Unpublish'), $url, [
+                        'title' => Yii::t('yii', 'Unpublish'),
+                        'data-pjax' => '0',
+                        'data-method' => 'post',
+                    ]));
+                }else{
+                    return '';
+                }
+            };
+        }
+        
+        if (!isset($this->buttons['sendtopublish'])) {
+            $this->buttons['sendtopublish'] = function ($url, $model) {
+                if($model->state != AppActiveRecord::STATUS_PUBLISHREADY){
+                    return Html::tag('li',Html::a('<span class="fa fa-plus-square-o fa-lg"></span> '.Yii::t('yii', 'Ready to be Publish'), $url, [
+                        'title' => Yii::t('yii', 'Ready to be Publish'),
+                        'data-pjax' => '0',
+                        'data-method' => 'post',
+                    ]));
+                }else{
+                    return '';
+                }
             };
         }
     }
@@ -192,22 +244,26 @@ class ActionColumn extends Column
         
         $buttons = preg_replace_callback('/\\{([\w\-\/]+)\\}/', function ($matches) use ($model, $key, $index) {
             $name = $matches[1];
-            if (isset($this->buttons[$name])) {
-                $url = $this->createUrl($name, $model, $key, $index);
-                if(call_user_func($this->checkaccess, $url)){
-                    return call_user_func($this->buttons[$name], $url, $model);
-                }else{
+            $module = \Yii::$app->user->can(\Yii::$app->controller->module->id.'/'.\Yii::$app->controller->id.'/'.$name);
+            if($module){
+                if (isset($this->buttons[$name])) {
+                    $url = $this->createUrl($name, $model, $key, $index);
+                    if(call_user_func($this->checkaccess, $url)){
+                        return call_user_func($this->buttons[$name], $url, $model);
+                    }
+                    else{
+                        return '';
+                    }
+               } 
+            else {
                     return '';
                 }
-            } else {
-                return '';
             }
         }, $this->template);
         
-        if($buttons==''){
+        if($buttons =='' || $buttons ==' '){
             return $buttons;
         }
-        
         $content .= Html::tag('ul',$buttons,[             
                     'class' => 'dropdown-menu pull-right',
                     'role' => 'menu',

@@ -1,5 +1,5 @@
 <?php
-use backend\assets\AppAsset;
+use app\assets\AppAsset;
 use yii\UrlAsset\component\UrlAsset;
 use yii\helpers\Html;
 use yii\adminUi\widget\Header;
@@ -51,9 +51,9 @@ $this->beginPage()
             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['content'=> NavBarUser::Widget(),'options'=>['class'=>'']];
             }else{
-                $menuItems[] = ['content'=> NavBarMessage::Widget(),'options'=>['class'=>'dropdown messages-menu']];
-                $menuItems[] = ['content'=> NavBarNotification::Widget(),'options'=>['class'=>'dropdown notifications-menu']];
-                $menuItems[] = ['content'=> NavBarTask::Widget(),'options'=>['class'=>'dropdown tasks-menu']];
+                //$menuItems[] = ['content'=> NavBarMessage::Widget(),'options'=>['class'=>'dropdown messages-menu']];
+                //$menuItems[] = ['content'=> NavBarNotification::Widget(),'options'=>['class'=>'dropdown notifications-menu']];
+                //$menuItems[] = ['content'=> NavBarTask::Widget(),'options'=>['class'=>'dropdown tasks-menu']];
                 $menuItems[] = ['content'=> NavBarUser::Widget(),'options'=>['class'=>'dropdown user user-menu']];
             }
             

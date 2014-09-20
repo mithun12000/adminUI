@@ -135,7 +135,7 @@ class Breadcrumbs extends Widget
         } else {
             throw new InvalidConfigException('The "label" element is required for each link.');
         }
-        if(isset($link['options']['class'])){
+        if($link['options']['class']){
             $label = Html::tag('i', '',$link['options']).$label;
         }
         if (isset($link['url'])) {

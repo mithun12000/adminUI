@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\adminUi\widget\Alert;
 
 /**
  * @var yii\web\View $this
@@ -14,6 +15,19 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="header"><?= Html::encode($this->title) ?></div>
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
         <div class="body bg-gray">
+        <?php if ($flash = Yii::$app->session->getFlash("notification")){
+             Alert::begin([
+                'options' => [
+                    'class' => 'alert-info alert-dismissable',
+                ],
+                'icon' => 'fa fa-info',
+                'closeButton' => [],
+            ]); 
+             ?>
+        <p><?= $flash ?></p>
+        <?php Alert::end(); 
+        } ?>
+            
             <div class="form-group">
                 <?= $form->field($model, 'username') ?>
             </div>
@@ -27,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="footer">                                                               
             <?= Html::submitButton('Sign me in', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
 
-            <p><a href="#">I forgot my password</a></p>
+            <p><?= Html::a("I forgot my password", ['site/forgot'])?></p>
     </div>
     <?php ActiveForm::end(); ?>
 </div>

@@ -17,12 +17,9 @@ use yii\web\AssetBundle;
  */
 class AdminUiPluginAsset extends AssetBundle
 {
-    public $sourcePath = '@vendor/adminUi/assets/';
-    public $js = [
-        'js/bootstrap.min.js',
-    ];
     public $depends = [
         'yii\web\JqueryAsset',
+        'yii\bootstrap\BootstrapPluginAsset',
         'yii\adminUi\assetsBundle\AdminUiAsset',
     ];
 }
