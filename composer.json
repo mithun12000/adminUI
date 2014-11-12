@@ -25,7 +25,7 @@
   "require": {
     	"yiisoft/yii2":">= 2.0.0",
 		"yiisoft/yii2-bootstrap": ">= 2.0.0",
-		"mithun12000/yii2-urlasset":"*",
+		"mithun12000/yii2-urlasset":">=1.0",
 		"bower-asset/font-awesome": "4.2.0",
         "bower-asset/Ionicons":"1.5.2",
         "bower-asset/ckeditor":"4.*",
