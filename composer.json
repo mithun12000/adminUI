@@ -23,15 +23,16 @@
   ],
   "minimum-stability": "dev",
   "require": {
-    	"yiisoft/yii2":"*",
-	"yiisoft/yii2-bootstrap": "*",
-	"mithun12000/yii2-urlasset":"*",
-	"bower-asset/font-awesome": "4.2.0",
+    	"yiisoft/yii2":">= 2.0.0",
+		"yiisoft/yii2-bootstrap": ">= 2.0.0",
+		"mithun12000/yii2-urlasset":"*",
+		"bower-asset/font-awesome": "4.2.0",
         "bower-asset/Ionicons":"1.5.2",
         "bower-asset/ckeditor":"4.*",
         "bower-asset/bootstrap-daterangepicker":"1.3.13",
         "bower-asset/tinymce":"4.*",
-        "bower-asset/dropzone":"3.*"
+        "bower-asset/dropzone":"3.*",
+        "bower-asset/jquery-ui":"1.11.2"
   },
   "autoload": {
     "psr-4": {
