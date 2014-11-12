@@ -51,6 +51,7 @@ $.fn.dynamicForm = function (plusSelector, minusSelector, options){
 	defaults = {
 		duration:1000,
 		normalizeFullForm:true,
+                normalizeSource:true,
 		isSubDynamicForm:false
 	},
 	subDynamicForm = [],
@@ -159,6 +160,10 @@ $.fn.dynamicForm = function (plusSelector, minusSelector, options){
 		normalizeClone(clone, clones.length);
 		
 		dynamiseSubClones(clone);
+                
+                if (typeof options.cloneDone === "function") {
+                    callBackReturn = options.cloneDone(clone);
+                }
 	}
 	
 	/**
@@ -185,6 +190,10 @@ $.fn.dynamicForm = function (plusSelector, minusSelector, options){
 		normalizeClone(clone, clones.length);
 		
 		dynamiseSubClones(clone);
+                
+                if (typeof options.cloneDone === "function") {
+                    callBackReturn = options.cloneDone(clone);
+                }
 	}
 	/**
 	 * Handle click on minus when minus element is inside the template
@@ -193,6 +202,10 @@ $.fn.dynamicForm = function (plusSelector, minusSelector, options){
 	function innerClickOnMinus(event){
 		event.preventDefault();
 		
+                if (typeof options.beforeRemove === "function") {
+                    callBackReturn = options.beforeRemove(this.removableClone);
+                }
+                    
 		if (this.removableClone.effect && options.removeColor) {
 			that = this;
 			this.removableClone.effect("highlight", {
@@ -205,6 +218,9 @@ $.fn.dynamicForm = function (plusSelector, minusSelector, options){
 		clones.splice($.inArray(this.removableClone, clones),1);
 		if (clones.length === 0){
 			source.find(plusSelector).show();
+                        if (typeof options.afterRemoveAll === "function") {
+                                callBackReturn = options.afterRemoveAll();
+                        }
 		}else{
 			clones[clones.length -1].find(plusSelector).show();
 		}
@@ -218,6 +234,9 @@ $.fn.dynamicForm = function (plusSelector, minusSelector, options){
 		event.preventDefault();
 		var clone = clones.pop();
 		if (clones.length >= 0) {
+                    if (typeof options.beforeRemove === "function") {
+                        callBackReturn = options.beforeRemove(clone);
+                    }
 			if (clone.effect && options.removeColor) {
 				that = this;
 				clone.effect("highlight", {
@@ -229,6 +248,9 @@ $.fn.dynamicForm = function (plusSelector, minusSelector, options){
 		}
 		if (clones.length === 0) {
 			minus.hide();
+                        if (typeof options.afterRemoveAll === "function") {
+                                callBackReturn = options.afterRemoveAll();
+                        }
 		}
 		plus.show();
 	}
@@ -249,17 +271,23 @@ $.fn.dynamicForm = function (plusSelector, minusSelector, options){
 			if (!nameAttr) {
 				//TODO: that.attr("name", formPrefix+"form"+index + "["+index+"]");
 			}
+                        
+                        if(options.normalizeSource){
 			
-			if(origNameAttr){
-				//This is a subform (thus prefix is not the same as below)
-				that.attr("name", prefix+"["+index+"]"+"["+origNameAttr+"]");
-			}else{
-				//This is the main form
-				that.attr("origname", nameAttr);
-				
-				//This is the main normalization
-				that.attr("name", prefix+"["+index+"]"+"["+nameAttr+"]");
-			}
+                            if(origNameAttr){
+                                    //This is a subform (thus prefix is not the same as below)
+                                    that.attr("name", prefix+"["+index+"]"+"["+origNameAttr+"]");
+                            }else{
+                                    //This is the main form
+                                    that.attr("origname", nameAttr);
+
+                                    //This is the main normalization
+                                    that.attr("name", prefix+"["+index+"]"+"["+nameAttr+"]");
+                            }
+                        }else{
+                            that.attr("origname", nameAttr);
+                        }
+                        
 			
 			/* Normalize field id attributes */
 			if (idAttr) {
@@ -269,7 +297,9 @@ $.fn.dynamicForm = function (plusSelector, minusSelector, options){
 					$(this).attr("origfor", idAttr);
 					$(this).attr("for", idAttr + index);
 				});
-				that.attr("id", idAttr + index);
+                                if(options.normalizeSource){
+                                    that.attr("id", idAttr + index);
+                                }
 			}
 		});
 	}
@@ -280,10 +310,18 @@ $.fn.dynamicForm = function (plusSelector, minusSelector, options){
 			var that = $(this),
 			nameAttr = that.attr("name"), 
 			origNameAttr = that.attr("origname"),
-			idAttr = that.attr("id"),
-			newIdAttr = idAttr.slice(0,-1) + index,
+			idAttr = that.attr("id"),                        
 			match = matchRegEx.exec(nameAttr);
-			that.attr("name", match[1]+index+match[3]);
+                        
+                        if(options.normalizeSource){
+                            newIdAttr = idAttr.slice(0,-1) + index;
+                        }else{
+                            newIdAttr = idAttr + index;
+                        }
+                        
+                        if(options.normalizeSource){
+                            that.attr("name", match[1]+index+match[3]);
+                        }
 			
 			if (idAttr) {
 				that.attr("origid", idAttr);
@@ -354,7 +392,7 @@ $.fn.dynamicForm = function (plusSelector, minusSelector, options){
 		formPrefix = formPrefix+"["+formPrefix+"]";
 	}
 	
-	if(!options.isInAClone){
+	if(!options.isInAClone){            
 		normalizeSource(source, formPrefix, 0);
 	}else{
 		formPrefix = formPrefix || options.selector.replace(/\W/g, "");
@@ -494,6 +532,10 @@ $.fn.dynamicForm = function (plusSelector, minusSelector, options){
 	if(options.data){
 		source.inject(options.data);
 	}
+        
+        if (typeof options.afterInit === "function") {
+            callBackReturn = options.afterInit();
+        }
 	
 	return source;
 };

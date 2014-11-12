@@ -348,7 +348,3 @@
 
   var locale = $.fn.wysihtml5.locale = {};
 })(window.jQuery, window.wysihtml5);
-
-jQuery(document).ready(function() {
-  $('.texteditor').wysihtml5();
-});

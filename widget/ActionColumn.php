@@ -206,6 +206,14 @@ class ActionColumn extends Column
                 }
             };
         }
+        if (!isset($this->buttons['deallocate'])) {
+            $this->buttons['deallocate'] = function ($url, $model) {
+                return Html::tag('li',Html::a('<span class="fa fa-edit fa-lg"></span> '.Yii::t('yii', 'Deallocate'), $url, [
+                    'title' => Yii::t('yii', 'Deallocate'),
+                    'data-pjax' => '0',
+                ]));
+            };
+        }
     }
 
     /**

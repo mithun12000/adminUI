@@ -1,0 +1,40 @@
+{
+  "name": "mithun12000/adminui",
+  "description": "Yii2 admin ui based on AdminLTE free template",
+  "version":"1.0.0",
+  "keywords": [
+    "yii2",
+	"theme",
+    "adminUi",
+	"layout"
+  ],
+  "type": "yii2-extension",
+  "license": "GPLv2",
+  "support": {
+    "issues": "https://github.com/mithun12000/adminUI/issues?page=1&state=open",
+    "source": "https://github.com/mithun12000/adminUI"
+  },
+  "authors": [
+    {
+      "name": "Mithun Mandal",
+	  "email":"mithun12000@gmail.com",
+      "homepage": "http://Indiatimes.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    	"yiisoft/yii2":"*",
+	"yiisoft/yii2-bootstrap": "*",
+	"mithun12000/yii2-urlasset":"*"
+  },
+  "autoload": {
+    "psr-4": {
+      "yii\\adminUi\\": "",
+	  "vendor\\adminUi\\assets\\":"assets",
+	  "backend\\themes\\adminui\\":"themes"
+    }
+  },
+  "extra":{
+	"bootstrap":"yii\\adminUi\\AdminUiBootstrap"
+  }
+}

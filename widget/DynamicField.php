@@ -10,6 +10,7 @@ namespace yii\adminUi\widget;
 
 use Yii;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
 use yii\base\InvalidConfigException;
 use yii\adminUi\assetsBundle\AdminUiDynamicFormAsset;
 use yii\adminUi\assetsBundle\AdminUiInputMaskAsset;
@@ -36,6 +37,10 @@ class DynamicField extends InputWidget
 
 
     public static $autoIdPrefix = 'dynamicele';
+    
+    public $clientId;
+    
+    protected $data = [];
 
     /**
      * Initializes the widget
@@ -76,13 +81,7 @@ class DynamicField extends InputWidget
                 }
                 \Yii::trace(print_r($singleModel,true),__METHOD__);
                 \Yii::trace(print_r($this->options,true),__METHOD__);   
-                if($count){
-                    echo Html::beginTag('div', ['id'=>  $id.$count]);
-                }else{
-                    echo Html::beginTag('div', ['id'=>  $id]);
-                }
-                echo $this->getInput($this->type, $this->list,$singleModel);
-                echo Html::endTag('div');
+                $this->data[][$this->name] = $singleModel->{$this->attribute};
                 $count++;
             }
             \Yii::trace("render done problem ",__METHOD__);
@@ -90,19 +89,21 @@ class DynamicField extends InputWidget
             $singleModel = ArrayHelper::getValue($this->options, 'model');
             unset($this->options['model']);
             unset($this->options['models']);
-            
-            echo Html::beginTag('div', ['id'=>  $id]);
-            echo $this->getInput($this->type, $this->list,$singleModel);
-            echo Html::endTag('div');
         }
+        
+        $this->options['value'] = '';
+        echo Html::beginTag('div', ['class'=>  'input-group']);
+        echo $this->getInput($this->type, $this->list,$singleModel);
         $this->generateButton();
+        echo Html::endTag('div');
+        
         $this->registerAssets();
     }
     
     public function generateButton() {
-        echo Html::beginTag('div', ['class'=>  'right']);        
-        echo Html::a('<i class="fa fa-minus"></i>', '#',['id' => $this->getId().'_del','class'=>'btn btn-sm  btn-danger']);
-        echo Html::a('<i class="fa fa-plus"></i>', '#',['id' => $this->getId().'_add','class'=>'btn btn-sm btn-success']);
+        echo Html::beginTag('div', ['class'=>  'input-group-btn']);        
+        echo Html::a('<i class="fa fa-minus"></i>', '#',['id' => $this->getId().'_del','class'=>'btn btn-danger']);
+        echo Html::a('<i class="fa fa-plus"></i>', '#',['id' => $this->getId().'_add','class'=>'btn btn-success']);
         echo Html::endTag('div');
     }
 
@@ -116,95 +117,64 @@ class DynamicField extends InputWidget
             $this->clientOptions = [$this->maskType => $this->mask];
             $this->registerPlugin('inputmask');
         }
+        
+        //$totalClientlength = count($this->form->attributes);
+        
+        
+        //$form_client_option = Json::encode($this->getClientOptions());
+        //print($form_client_option);
+        $form_client_option = $this->getClientOptions();
+        
         AdminUiDynamicFormAsset::register($view);
         $id = $this->getId();
-        $js = "jQuery('#$id').dynamicForm(\"#{$id}_add\",\"#{$id}_del\",".'{
+        $js = "jQuery('#$this->clientId').dynamicForm(\"#{$id}_add\",\"#{$id}_del\",".'{
                 limit:10,
+                data:'.Json::encode($this->data).',
                 normalizeFullForm:false,
-                beforeClone:function(clones){console.log("call Before clone");console.log(clones);},
-                afterClone:function(clone){console.log("call after clone");console.log(clone);if(clone.prop("tagName") == "input" || clone.prop("tagName") == "select" || clone.prop("tagName") == "textarea"){
-                           if(clone.val()){
-                              clone.val(""); 
-                           } 
-                        }else{
-                            clone.find("input select textarea").val("");
-                        }},
-                beforeDelete:function(clone){console.log("call Before delete");console.log(clone);},
-                afterDelete:function(clones){console.log("call after Delete");console.log(clones);}
+                normalizeSource:false,
+                afterRemoveAll:function(){
+                    jQuery("#'.$this->getId().'_dis").remove();
+                },
+                afterInit:function(){
+                    console.log("call after initialize");
+                },
+                cloneDone:function(clone){
+                    console.log("call after clone done");                    
+                    //console.log(jQuery(clone));
+                    if(jQuery(".'.$this->clientId.'").length>0 && jQuery("#'.$this->getId().'_dis").length==0){
+                        jQuery("#'.$this->clientId.'").find(".input-group-btn").append(jQuery(\''.Html::tag('button','<i class="fa fa-minus"></i>',['id' => $this->getId().'_dis','class'=>'btn disabled']).'\'));                        
+                    }
+                    
+                    var validate = '.Json::encode($this->getClientOptions()).';
+                        
+
+                    var id;
+                    jQuery(clone).find("input, checkbox, select, textarea").each(function(){
+                        id = jQuery(this).attr("id");
+                    });
+                    
+                    validate.id = id;
+                    validate.input = "#"+id;
+                    validate.container = "#"+jQuery(clone).attr("id");
+                    
+                    jQuery("#'.$this->form->id.'").yiiActiveForm("add",validate);
+                    
+                },
+                beforeRemove:function(clone){
+                    console.log("call before removing clone");
+                    //console.log(clone);
+                    //console.log(jQuery(clone));
+                    
+                    var id;
+                    jQuery(clone).find("input, checkbox, select, textarea").each(function(){
+                        id = jQuery(this).attr("id");
+                    });
+                    
+                    jQuery("#'.$this->form->id.'").yiiActiveForm("remove",id);
+                }
             });';
         $view->registerJs($js);
         //$this->clientOptions = ["#plus", "#minus", {limit:5}];
         
-    }
-    
-    /**
-     * Returns the JS options for the field.
-     * @return array the JS options
-     */
-    protected function getClientOptions()
-    {
-        $attribute = Html::getAttributeName($this->attribute);
-        if (!in_array($attribute, $this->model->activeAttributes(), true)) {
-            return [];
-        }
-
-        $enableClientValidation = $this->enableClientValidation || $this->enableClientValidation === null && $this->form->enableClientValidation;
-        $enableAjaxValidation = $this->enableAjaxValidation || $this->enableAjaxValidation === null && $this->form->enableAjaxValidation;
-
-        if ($enableClientValidation) {
-            $validators = [];
-            foreach ($this->model->getActiveValidators($attribute) as $validator) {
-                /* @var $validator \yii\validators\Validator */
-                $js = $validator->clientValidateAttribute($this->model, $attribute, $this->form->getView());
-                if ($validator->enableClientValidation && $js != '') {
-                    if ($validator->whenClient !== null) {
-                        $js = "if ({$validator->whenClient}(attribute, value)) { $js }";
-                    }
-                    $validators[] = $js;
-                }
-            }
-        }
-
-        if (!$enableAjaxValidation && (!$enableClientValidation || empty($validators))) {
-            return [];
-        }
-
-        $options = [];
-
-        $inputID = Html::getInputId($this->model, $this->attribute);
-        $options['id'] = $inputID;
-        $options['name'] = $this->attribute;
-
-        $options['container'] = isset($this->selectors['container']) ? $this->selectors['container'] : ".field-$inputID";
-        $options['input'] = isset($this->selectors['input']) ? $this->selectors['input'] : "#$inputID";
-        if (isset($this->selectors['error'])) {
-            $options['error'] = $this->selectors['error'];
-        } elseif (isset($this->errorOptions['class'])) {
-            $options['error'] = '.' . implode('.', preg_split('/\s+/', $this->errorOptions['class'], -1, PREG_SPLIT_NO_EMPTY));
-        } else {
-            $options['error'] = isset($this->errorOptions['tag']) ? $this->errorOptions['tag'] : 'span';
-        }
-
-        $options['encodeError'] = !isset($this->errorOptions['encode']) || !$this->errorOptions['encode'];
-        if ($enableAjaxValidation) {
-            $options['enableAjaxValidation'] = true;
-        }
-        foreach (['validateOnChange', 'validateOnBlur', 'validateOnType', 'validationDelay'] as $name) {
-            $options[$name] = $this->$name === null ? $this->form->$name : $this->$name;
-        }
-
-        if (!empty($validators)) {
-            $options['validate'] = new JsExpression("function (attribute, value, messages, deferred) {" . implode('', $validators) . '}');
-        }
-
-        // only get the options that are different from the default ones (set in yii.activeForm.js)
-        return array_diff_assoc($options, [
-            'validateOnChange' => true,
-            'validateOnBlur' => true,
-            'validateOnType' => false,
-            'validationDelay' => 200,
-            'encodeError' => true,
-            'error' => '.help-block',
-        ]);
     }
 }

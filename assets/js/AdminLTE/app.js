@@ -99,6 +99,24 @@ $(function() {
         box.slideUp();
     });
     
+    $("a[data-toggle=modal]").click(function(){
+        var target = $(this).attr('data-target');
+        var url = $(this).attr('href');
+        if(url){
+            $(target).find(".modal-body").load(url);
+        }
+    });
+    
+    $("button[data-toggle=modal], input[data-toggle=modal]").click(function(){
+        var target = $(this).attr('data-target');
+        var url = $(this).attr('data-remote');
+        if(url){
+            //<div><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</div>
+            $(target).find(".modal-body").html('<div class="text-center"><span class="fa fa-refresh fa-spin fa-2x"></span> Loading...</div>');
+            $(target).find(".modal-body").load(url);
+        }
+    });
+    
     
     /* 
      * Make sure that the sidebar is streched full height
@@ -164,10 +182,7 @@ $(function() {
         }
      });
      
-     try{
-        $(".textarea").wysihtml5();
-    }catch(e){}
-
+    
     /* Sidebar tree view */
     $(".sidebar .treeview").tree();
 

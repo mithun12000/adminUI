@@ -60,7 +60,7 @@ class Daterange extends InputWidget
         $options = Json::encode($options);
         
         $id = $this->options['id'];
-        $js = "jQuery('#$id').daterangepicker({timePicker: false, format: 'YYYY-MM-DD'})";
+        $js = "jQuery('#$id').daterangepicker({timePicker: false, format: 'YYYY-MM-DD',separator:' | '})";
         $view->registerJs($js);
     }
 }

@@ -19,12 +19,27 @@ jQuery.fn.dynamicForm = function (plusElmnt, minusElmnt, options){
                 beforeDelete:null,
                 afterDelete:null,
   	};
+        
+        template.find(formFields).each(function(){
+            jQuery(this).val('');
+            jQuery(this).html('');
+        });
+        
+        /*
+        id = source.attr("id") + clones.length;
+        while(jQuery('#'+id).length>0){
+            clone = jQuery('#'+id);
+            normalizeElmnt(clone);
+            clones.push(clone);
+        }
+        //*/
+        
 	
   	// Extend default options with those provided
   	options = $.extend(defaults, options);
 	
 	isPlusDescendentOfTemplate = source.find("*").filter(function(){
-		return this == plus.get(0);
+            return this == plus.get(0);
 	});
 	
 	isPlusDescendentOfTemplate = isPlusDescendentOfTemplate.length > 0 ? true : false;
@@ -32,7 +47,7 @@ jQuery.fn.dynamicForm = function (plusElmnt, minusElmnt, options){
 	function normalizeElmnt(elmnt){
         elmnt.find(formFields).each(function(){
             var nameAttr = jQuery(this).attr("name"), 
-			idAttr = jQuery(this).attr("id");
+			idAttr = jQuery(this).attr("id");                        
 
             /* Normalize field name attributes */
             if (!nameAttr) {
@@ -57,7 +72,9 @@ jQuery.fn.dynamicForm = function (plusElmnt, minusElmnt, options){
     };
 	
 	/* Hide minus element */
-	minus.hide();
+        if(clones.length){
+            minus.hide();
+        }
 	
 	/* If plus element is within the template */
 	if (isPlusDescendentOfTemplate) {

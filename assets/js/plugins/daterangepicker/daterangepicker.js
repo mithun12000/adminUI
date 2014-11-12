@@ -40,7 +40,7 @@
         this.cancelClass = 'btn-default';
 
         this.format = 'MM/DD/YYYY';
-        this.separator = ' - ';
+        this.separator = ' | ';
 
         this.locale = {
             applyLabel: 'Apply',
@@ -881,7 +881,3 @@
     };
 
 }(window.jQuery);
-
-jQuery(document).ready(function() {
-  $('input[name="daterange"]').daterangepicker();
-});

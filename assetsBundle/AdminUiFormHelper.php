@@ -15,19 +15,16 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class AdminUiDatePickerAsset extends AssetBundle
+class AdminUiFormHelper extends AssetBundle
 {
-    public $sourcePath = '@bower/bootstrap-daterangepicker';
-    public $css = [                
-        'daterangepicker-bs3.css',
-    ];
+    public $sourcePath = '@vendor/adminUi/assets/';
+    public $baseUrl = '@web';
     
     public $js  = [
-        'daterangepicker.js',
-    ];  
+            'js/yii.FormHelper.js',
+    ];        
+    
     public $depends = [
-        'yii\web\JqueryAsset',
-        'yii\adminUi\assetsBundle\AdminUiAsset',
-        'yii\adminUi\assetsBundle\AdminUiMomentAsset',
+        'yii\adminUi\assetsBundle\AdminUiActiveForm',
     ];
 }

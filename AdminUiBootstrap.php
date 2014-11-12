@@ -21,7 +21,7 @@ class AdminUiBootstrap implements BootstrapInterface{
             'class'=>'yii\web\View',
             'theme' => [
                 'pathMap' => ['@backend/views' => '@backend/themes/adminui'],   // for Admin theme which resides on extension/adminui
-                'baseUrl' => '@web/themes/adminui',
+                //'baseUrl' => '@web/themes/adminui',
             ],
         ]);
         
@@ -38,7 +38,7 @@ class AdminUiBootstrap implements BootstrapInterface{
                                 ],                        
                                 'yii\grid\GridViewAsset' => [
                                     'depends'   => [
-                                        'backend\assets\AppAsset'
+                                        'app\assets\AppAsset'
                                     ],
                                 ],
             ],            

@@ -15,19 +15,21 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class AdminUiDatePickerAsset extends AssetBundle
+class JqueryUI extends AssetBundle
 {
-    public $sourcePath = '@bower/bootstrap-daterangepicker';
-    public $css = [                
-        'daterangepicker-bs3.css',
+    public $sourcePath = '@vendor/bower/jquery-ui/';
+    //public $baseUrl = '@web';
+    
+    public $css = [
+        'themes/sunny/jquery-ui.css'
     ];
     
+    
     public $js  = [
-        'daterangepicker.js',
-    ];  
+        'jquery-ui.min.js'
+    ];      
+        
     public $depends = [
-        'yii\web\JqueryAsset',
-        'yii\adminUi\assetsBundle\AdminUiAsset',
-        'yii\adminUi\assetsBundle\AdminUiMomentAsset',
-    ];
+            'yii\web\JqueryAsset',
+    ];        
 }
