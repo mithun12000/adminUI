@@ -36,9 +36,9 @@
   },
   "autoload": {
     "psr-4": {
-      "yii\\adminUi\\": "",
-	  "vendor\\adminUi\\assets\\":"assets",
-	  "backend\\themes\\adminui\\":"themes"
+      	"yii\\adminUi\\": "src/",
+	"vendor\\adminUi\\assets\\":"src/assets",
+	"backend\\themes\\adminui\\":"src/themes"
     }
   },
   "extra":{
