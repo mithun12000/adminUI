@@ -42,7 +42,7 @@ class Daterange extends InputWidget
     public function run() {
         //$id = $this->getId();
         Html::addCssClass($this->options, "form-control");        
-        echo $this->getInput($this->type, $this->list,$singleModel);        
+        echo $this->getInput($this->type, $this->list);       
         $this->registerAssets();
     }
     
@@ -55,12 +55,14 @@ class Daterange extends InputWidget
         
         $options = ArrayHelper::merge([
             'timePicker' => false,
+            'timePickerIncrement' => 30,
+            'separator' => ' - ',
             'format' => 'YYYY-MM-DD',
         ], $this->clientOptions);
         $options = Json::encode($options);
         
         $id = $this->options['id'];
-        $js = "jQuery('#$id').daterangepicker({timePicker: false, format: 'YYYY-MM-DD',separator:' | '})";
+        $js = "jQuery('#$id').daterangepicker(".$options.")";
         $view->registerJs($js);
     }
 }
