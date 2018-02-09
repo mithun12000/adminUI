@@ -9,7 +9,7 @@
 	"layout"
   ],
   "type": "yii2-extension",
-  "license": "GPLv2",
+  "license": "MIT",
   "support": {
     "issues": "https://github.com/mithun12000/adminUI/issues?page=1&state=open",
     "source": "https://github.com/mithun12000/adminUI"
